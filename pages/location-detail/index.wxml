@@ -1,0 +1,111 @@
+<view class="box-detail-page">
+  <view class="detail-nav" style="{{nav.centerTopbarStyle}}">
+    <view class="detail-nav__btn" bindtap="goBack">‹</view>
+    <view class="detail-nav__title">箱里有什么</view>
+    <view class="detail-nav__btn">⌯</view>
+  </view>
+
+  <view class="box-hero">
+    <image src="{{box.heroUrl || box.coverUrl || '/assets/images/image-07.jpg'}}" mode="aspectFill" />
+    <view class="box-hero__shade"></view>
+  </view>
+
+  <view class="box-info-card">
+    <view class="box-info-head">
+      <view>
+        <view class="box-info-title">{{box.detailTitle || box.name || name}}</view>
+        <view class="box-info-location">⌖ {{box.detailLocation || box.path || path}}</view>
+      </view>
+      <button class="box-edit" bindtap="editBox">编辑</button>
+    </view>
+
+    <view class="detail-tags" wx:if="{{box.tags.length}}">
+      <text class="detail-tag" wx:for="{{box.tags}}" wx:key="*this">{{item}}</text>
+    </view>
+
+    <view class="box-metrics">
+      <view class="box-metric">
+        <view class="metric-icon">▣</view>
+        <view>
+          <view class="metric-small">物品</view>
+          <view class="metric-big">{{box.detailItemCount || box.itemCount || items.length}}</view>
+        </view>
+      </view>
+      <view class="box-metric">
+        <view class="metric-icon metric-icon--blue">↻</view>
+        <view>
+          <view class="metric-small">更新</view>
+          <view class="metric-big">{{box.detailUpdatedLabel || box.updatedLabel || '2天前'}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="section child-section" wx:if="{{children.length}}">
+    <view class="section-head">
+      <view class="section-title">子位置</view>
+      <view class="section-action">{{children.length}}</view>
+    </view>
+    <view class="child-grid">
+      <view class="soft-card child-card" wx:for="{{children}}" wx:key="id" bindtap="goChild" data-id="{{item.id}}" data-name="{{item.name}}" data-path="{{item.path}}">
+        <view class="child-card__name">{{item.name}}</view>
+        <view class="child-card__meta">{{item.itemCount || 0}} 件物品</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="detail-section">
+    <view class="contents-head">
+      <view class="contents-title">盒内物品</view>
+      <view class="contents-actions">
+        <view class="contents-withdraw" bindtap="goWithdraw">⊖ 取出</view>
+        <view class="contents-add" bindtap="goNewItem">⊕ 添加物品</view>
+      </view>
+    </view>
+
+    <view class="detail-item-list" wx:if="{{items.length}}">
+      <view class="detail-item" wx:for="{{items}}" wx:key="id" bindtap="goItemDetail" data-id="{{item.id}}">
+        <view class="detail-item__thumb">
+          <image wx:if="{{item.imageUrl}}" src="{{item.imageUrl}}" mode="aspectFill" />
+          <text wx:else>{{item.initial}}</text>
+        </view>
+        <view class="detail-item__copy">
+          <view class="detail-item__title">{{item.name}}</view>
+          <view class="detail-item__meta">{{item.note}}</view>
+        </view>
+        <view class="detail-item__side">
+          <view>数量：{{item.quantity}}</view>
+          <view class="chevron">›</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="empty" wx:else>
+      <view class="empty-title">这个盒子还是空的</view>
+      <view>先添加第一件物品到这个收纳盒。</view>
+      <button class="primary-btn empty-btn" bindtap="goNewItem">添加物品</button>
+    </view>
+  </view>
+
+  <view class="history-section">
+    <view class="contents-title">记录</view>
+    <view class="timeline">
+      <view class="timeline-row timeline-row--active">
+        <view class="timeline-dot"></view>
+        <view>
+          <view class="timeline-date">今天 10:45</view>
+          <view class="timeline-copy">已将“保暖内衣”添加到盒子。</view>
+        </view>
+      </view>
+      <view class="timeline-row">
+        <view class="timeline-dot"></view>
+        <view>
+          <view class="timeline-date">2023-10-12</view>
+          <view class="timeline-copy">盒子从“客厅”移动到“阁楼”。</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="detail-fab" bindtap="goNewItem">＋</view>
+</view>

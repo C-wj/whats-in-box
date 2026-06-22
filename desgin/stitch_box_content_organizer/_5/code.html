@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<link href="../assets/fonts/google-fonts.css" rel="stylesheet"/>
+<link href="../assets/fonts/material-symbols.css" rel="stylesheet"/>
+<link href="../assets/stitch.css" rel="stylesheet"/>
+<title>Scan - whats-in-box</title>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .scanner-frame {
+            position: relative;
+            width: 260px;
+            height: 260px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 24px;
+            overflow: hidden;
+        }
+        .scanner-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #07c160, transparent);
+            top: 0;
+            animation: scan 3s ease-in-out infinite;
+            box-shadow: 0 0 15px #07c160;
+        }
+        @keyframes scan {
+            0%, 100% { top: 5%; }
+            50% { top: 95%; }
+        }
+        .corner {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            border-color: #07c160;
+            border-width: 4px;
+        }
+        .corner-tl { top: -2px; left: -2px; border-right: 0; border-bottom: 0; border-top-left-radius: 20px; }
+        .corner-tr { top: -2px; right: -2px; border-left: 0; border-bottom: 0; border-top-right-radius: 20px; }
+        .corner-bl { bottom: -2px; left: -2px; border-right: 0; border-top: 0; border-bottom-left-radius: 20px; }
+        .corner-br { bottom: -2px; right: -2px; border-left: 0; border-top: 0; border-bottom-right-radius: 20px; }
+        
+        .safe-area-inset-bottom {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+
+        .blur-backdrop {
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-black text-on-surface font-body-md overflow-hidden selection:bg-primary-container">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center h-12 px-margin bg-transparent">
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-black/20 blur-backdrop text-white active:scale-95 transition-transform">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm-mobile text-white drop-shadow-md">whats-in-box</h1>
+<div class="w-10 h-10"></div> <!-- Spacer for centering -->
+</header>
+<!-- Camera Viewfinder Viewport -->
+<main class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+<!-- Mock Camera Stream Background -->
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center scale-110 blur-[1px]" data-alt="A clean, organized minimalist storage room with white shelves and transparent plastic boxes. The lighting is soft and natural, emphasizing a sense of calm and order. The visual style is high-end architectural photography, focusing on a specific shelf with neatly labeled containers in a corporate modern aesthetic." style="background-image: url('../assets/images/image-13.jpg')"></div>
+<!-- Darkness Overlay for Focus -->
+<div class="absolute inset-0 bg-black/40"></div>
+</div>
+<!-- Scanning Interface Overlay -->
+<div class="relative z-10 flex flex-col items-center gap-8 w-full">
+<div class="scanner-frame">
+<div class="scanner-line"></div>
+<div class="corner corner-tl"></div>
+<div class="corner corner-tr"></div>
+<div class="corner corner-bl"></div>
+<div class="corner corner-br"></div>
+</div>
+<p class="font-label-md text-label-md text-white/90 bg-black/30 px-4 py-2 rounded-full blur-backdrop">
+                Scan QR Code or Item to Identify
+            </p>
+<!-- Quick Action Buttons Group -->
+<div class="flex items-center gap-10 mt-4">
+<button class="flex flex-col items-center gap-2 group" onclick="toggleFlash(this)">
+<div class="w-14 h-14 rounded-full bg-white/10 blur-backdrop border border-white/20 flex items-center justify-center text-white group-active:scale-90 transition-all">
+<span class="material-symbols-outlined text-2xl" id="flash-icon">flashlight_on</span>
+</div>
+<span class="font-label-sm text-label-sm text-white/70">Flash</span>
+</button>
+<button class="flex flex-col items-center gap-2 group">
+<div class="w-14 h-14 rounded-full bg-white/10 blur-backdrop border border-white/20 flex items-center justify-center text-white group-active:scale-90 transition-all">
+<span class="material-symbols-outlined text-2xl">photo_library</span>
+</div>
+<span class="font-label-sm text-label-sm text-white/70">Album</span>
+</button>
+<button class="flex flex-col items-center gap-2 group">
+<div class="w-14 h-14 rounded-full bg-white/10 blur-backdrop border border-white/20 flex items-center justify-center text-white group-active:scale-90 transition-all">
+<span class="material-symbols-outlined text-2xl">edit_note</span>
+</div>
+<span class="font-label-sm text-label-sm text-white/70">Manual</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Shared Component Implementation) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 h-[56px] flex justify-around items-center bg-surface dark:bg-surface-container-low pb-safe shadow-sm border-t border-surface-variant dark:border-outline-variant">
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-lowest transition-all active:scale-90">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</button>
+<!-- Active Tab: Scan -->
+<button class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed-dim hover:bg-surface-container-lowest transition-all active:scale-90">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">center_focus_strong</span>
+<span class="font-label-sm text-label-sm">Scan</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-lowest transition-all active:scale-90">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-sm text-label-sm">Stats</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-lowest transition-all active:scale-90">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">Me</span>
+</button>
+</nav>
+<script>
+        function toggleFlash(btn) {
+            const icon = document.getElementById('flash-icon');
+            const isActive = icon.innerText === 'flashlight_off';
+            icon.innerText = isActive ? 'flashlight_on' : 'flashlight_off';
+            
+            // Visual feedback for the button container
+            const container = btn.querySelector('div');
+            if (!isActive) {
+                container.classList.remove('bg-white/10');
+                container.classList.add('bg-primary-container', 'text-on-primary-container');
+            } else {
+                container.classList.add('bg-white/10');
+                container.classList.remove('bg-primary-container', 'text-on-primary-container');
+            }
+        }
+
+        // Lightweight atmospheric effect for scanning
+        document.addEventListener('mousemove', (e) => {
+            const frame = document.querySelector('.scanner-frame');
+            if (frame) {
+                const rect = frame.getBoundingClientRect();
+                const dx = (e.clientX - (rect.left + rect.width/2)) / 25;
+                const dy = (e.clientY - (rect.top + rect.height/2)) / 25;
+                frame.style.transform = `perspective(1000px) rotateY(${dx}deg) rotateX(${-dy}deg)`;
+            }
+        });
+
+        // Simulating auto-focus pulse
+        setInterval(() => {
+            const frame = document.querySelector('.scanner-frame');
+            frame.classList.add('scale-[1.02]');
+            setTimeout(() => frame.classList.remove('scale-[1.02]'), 150);
+        }, 4000);
+    </script>
+</body></html>

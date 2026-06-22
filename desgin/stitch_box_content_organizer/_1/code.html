@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<link href="../assets/fonts/google-fonts.css" rel="stylesheet"/>
+<link href="../assets/fonts/material-symbols.css" rel="stylesheet"/>
+<link href="../assets/stitch.css" rel="stylesheet"/>
+<title>whats-in-box | Home</title>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .card-shadow {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        .safe-area-bottom {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        body {
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 left-0 w-full z-40 bg-surface flex justify-between items-center h-12 px-margin">
+<div class="flex items-center gap-xs">
+<h1 class="font-headline-md text-headline-md text-primary">whats-in-box</h1>
+</div>
+<div class="flex gap-md">
+<button class="active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'opsz' 20;">notifications</span>
+</button>
+<button class="active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'opsz' 20;">settings</span>
+</button>
+</div>
+</header>
+<main class="pt-12 pb-24">
+<!-- Search and Filter Section -->
+<section class="px-margin pt-sm pb-gutter sticky top-12 bg-surface/95 backdrop-blur-sm z-30">
+<div class="relative flex items-center mb-sm">
+<span class="material-symbols-outlined absolute left-3 text-on-surface-variant text-[20px]">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-xl py-3 pl-10 pr-4 text-body-md placeholder:text-on-surface-variant focus:ring-2 focus:ring-primary/20" placeholder="Search boxes or items..." type="text"/>
+</div>
+<div class="flex gap-xs overflow-x-auto pb-1 no-scrollbar">
+<button class="px-4 py-2 rounded-full bg-primary text-on-primary font-label-md whitespace-nowrap active:scale-95 transition-transform">All</button>
+<button class="px-4 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-label-md whitespace-nowrap hover:bg-surface-variant active:scale-95 transition-transform">Living Room</button>
+<button class="px-4 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-label-md whitespace-nowrap hover:bg-surface-variant active:scale-95 transition-transform">Bedroom</button>
+<button class="px-4 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-label-md whitespace-nowrap hover:bg-surface-variant active:scale-95 transition-transform">Moving</button>
+<button class="px-4 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-label-md whitespace-nowrap hover:bg-surface-variant active:scale-95 transition-transform">Kitchen</button>
+</div>
+</section>
+<!-- Box List -->
+<section class="px-margin space-y-gutter">
+<!-- Box Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-sm card-shadow flex gap-md active:scale-[0.98] transition-all duration-200">
+<div class="w-24 h-24 rounded-lg flex-shrink-0 overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist photo of a sturdy cardboard storage box labeled 'Moving Box A' in a bright, modern room with soft natural sunlight. The box is centered, emphasizing organization and clarity. The aesthetic is corporate and functional, with a color palette of warm browns and crisp whites." src="../assets/images/image-01.jpg"/>
+</div>
+<div class="flex flex-col justify-between flex-grow py-1">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Moving Box A</h3>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span class="font-label-md text-label-md">Storage Unit 1</span>
+</div>
+</div>
+<div class="flex justify-between items-end">
+<span class="font-label-sm text-label-sm px-2 py-1 bg-primary-container/20 text-on-primary-container rounded">12 Items</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant/70">Last updated: 2 days ago</span>
+</div>
+</div>
+</div>
+<!-- Box Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-sm card-shadow flex gap-md active:scale-[0.98] transition-all duration-200">
+<div class="w-24 h-24 rounded-lg flex-shrink-0 overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A high-angle view of an open white storage bin filled with neatly folded winter clothes and textiles. The lighting is soft and even, highlighting a sense of home organization and seasonal storage. The style is professional and clean, fitting a modern digital inventory management tool." src="../assets/images/image-02.jpg"/>
+</div>
+<div class="flex flex-col justify-between flex-grow py-1">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Winter Clothes</h3>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span class="font-label-md text-label-md">Master Closet</span>
+</div>
+</div>
+<div class="flex justify-between items-end">
+<span class="font-label-sm text-label-sm px-2 py-1 bg-primary-container/20 text-on-primary-container rounded">8 Items</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant/70">Last updated: 5 days ago</span>
+</div>
+</div>
+</div>
+<!-- Box Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-sm card-shadow flex gap-md active:scale-[0.98] transition-all duration-200">
+<div class="w-24 h-24 rounded-lg flex-shrink-0 overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Close up shot of a plastic organizer box containing various colorful electronic cables and accessories. The background is a clean white desk, conveying a sense of tech organization and digital twin management. The lighting is high-key and professional." src="../assets/images/image-03.jpg"/>
+</div>
+<div class="flex flex-col justify-between flex-grow py-1">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Tech Accessories</h3>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span class="font-label-md text-label-md">Office Shelf</span>
+</div>
+</div>
+<div class="flex justify-between items-end">
+<span class="font-label-sm text-label-sm px-2 py-1 bg-primary-container/20 text-on-primary-container rounded">24 Items</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant/70">Last updated: 1 week ago</span>
+</div>
+</div>
+</div>
+<!-- Box Card 4 -->
+<div class="bg-surface-container-lowest rounded-xl p-sm card-shadow flex gap-md active:scale-[0.98] transition-all duration-200">
+<div class="w-24 h-24 rounded-lg flex-shrink-0 overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A professional photograph of a wooden crate used for storing vintage books and collectibles. The scene is lit with warm, atmospheric lighting, suggesting a well-maintained collection. The focus is on the textures of the wood and paper, fitting a premium organizing experience." src="../assets/images/image-04.jpg"/>
+</div>
+<div class="flex flex-col justify-between flex-grow py-1">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Antique Books</h3>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span class="font-label-md text-label-md">Attic Bay B</span>
+</div>
+</div>
+<div class="flex justify-between items-end">
+<span class="font-label-sm text-label-sm px-2 py-1 bg-primary-container/20 text-on-primary-container rounded">15 Items</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant/70">Last updated: 1 month ago</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating Action Button -->
+<button class="fixed right-margin bottom-20 w-14 h-14 bg-primary text-on-primary rounded-xl shadow-lg flex items-center justify-center active:scale-90 transition-all duration-200 z-50">
+<span class="material-symbols-outlined text-[32px]">add</span>
+</button>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 h-[56px] flex justify-around items-center bg-surface border-t border-outline-variant pb-safe">
+<a class="flex flex-col items-center justify-center text-primary active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">center_focus_strong</span>
+<span class="font-label-sm text-label-sm">Scan</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-sm text-label-sm">Stats</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">Me</span>
+</a>
+</nav>
+<script>
+        // Simple Micro-interactions
+        document.querySelectorAll('button, .bg-surface-container-lowest').forEach(el => {
+            el.addEventListener('click', () => {
+                // Mock interaction
+                console.log('Component interacted with');
+            });
+        });
+
+        // Search bar focus effect
+        const searchInput = document.querySelector('input');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('ring-2', 'ring-primary/20');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('ring-2', 'ring-primary/20');
+        });
+    </script>
+</body></html>

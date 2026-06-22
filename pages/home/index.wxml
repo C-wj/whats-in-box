@@ -1,0 +1,86 @@
+<view class="page">
+  <view class="topbar" style="{{nav.topbarStyle}}">
+    <view class="topbar__title">箱里有什么</view>
+    <view class="topbar__actions">
+      <view class="icon-btn icon-btn--bell"></view>
+      <view class="icon-btn icon-btn--gear" bindtap="goSettings"></view>
+    </view>
+  </view>
+
+  <view class="header-spacer"></view>
+
+  <view class="search-shell" bindtap="goSearch">
+    <text class="search-icon">⌕</text>
+    <input
+      class="search-input"
+      placeholder="搜索盒子或物品..."
+      confirm-type="search"
+      value="{{query}}"
+      bindinput="onQueryInput"
+      bindconfirm="onSearchConfirm"
+    />
+  </view>
+
+  <view class="chip-row-fixed">
+    <view
+      wx:for="{{filters}}"
+      wx:key="name"
+      class="chip {{index === 0 ? 'chip--active' : ''}}"
+    >
+      {{item.name}}
+    </view>
+  </view>
+
+  <view class="box-list" wx:if="{{boxCards.length}}">
+    <view
+      class="box-card"
+      wx:for="{{boxCards}}"
+      wx:key="id"
+      bindtap="goLocationDetail"
+      data-id="{{item.id}}"
+      data-name="{{item.name}}"
+      data-path="{{item.path}}"
+    >
+      <view class="box-thumb">
+        <image wx:if="{{item.coverUrl}}" src="{{item.coverUrl}}" mode="aspectFill" />
+        <text wx:else>{{item.initial}}</text>
+      </view>
+      <view class="box-main">
+        <view>
+          <view class="box-title">{{item.name}}</view>
+          <view class="box-location">⌖ {{item.path}}</view>
+        </view>
+        <view class="box-foot">
+          <text class="box-count">{{item.itemCount || 0}} 件物品</text>
+          <text class="box-updated">更新：{{item.updatedLabel}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty home-empty" wx:else>
+    <view class="empty-title">还没有盒子</view>
+    <view>先添加一个收纳位置，再把物品记录进去。</view>
+  </view>
+
+  <view class="home-fab" bindtap="goNewItem">＋</view>
+
+  <view class="bottom-nav">
+    <view class="bottom-nav__item bottom-nav__item--active">
+      <image class="bottom-nav__icon" src="/assets/tab/home-active.svg" mode="aspectFit" />
+      <text class="bottom-nav__label">首页</text>
+    </view>
+    <view class="bottom-nav__item" bindtap="goScan">
+      <image class="bottom-nav__icon" src="/assets/tab/scan.svg" mode="aspectFit" />
+      <text class="bottom-nav__label">扫描</text>
+    </view>
+    <view class="bottom-nav__item" bindtap="goLocations">
+      <image class="bottom-nav__icon" src="/assets/tab/stats.svg" mode="aspectFit" />
+      <text class="bottom-nav__label">统计</text>
+    </view>
+    <view class="bottom-nav__item" bindtap="goSettings">
+      <image class="bottom-nav__icon" src="/assets/tab/me.svg" mode="aspectFit" />
+      <text class="bottom-nav__label">我的</text>
+    </view>
+  </view>
+</view>

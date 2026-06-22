@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Add New Box - whats-in-box</title>
+<!-- Fonts -->
+<!-- Icons -->
+<!-- Tailwind -->
+<!-- Theme Config -->
+<style>
+        body {
+            background-color: #F7F7F7;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-shadow {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .ios-bottom-padding {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-surface">
+<!-- Top Navigation Bar (Shared Component Logic: Transactional Suppression) -->
+<nav class="fixed top-0 left-0 w-full z-50 bg-surface flex justify-between items-center h-12 px-margin border-b border-surface-variant/30">
+<div class="flex items-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center active:scale-95 transition-transform text-primary">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm-mobile">Add New Box</h1>
+</div>
+<div class="w-10 h-10"></div> <!-- Spacer for balance -->
+</nav>
+<main class="pt-12 pb-32">
+<!-- Cover Photo Section -->
+<section class="p-margin">
+<div class="relative group aspect-square w-full rounded-xl overflow-hidden bg-surface-container-high border-2 border-dashed border-outline-variant flex flex-col items-center justify-center gap-base transition-all active:bg-surface-container-highest cursor-pointer">
+<div class="w-16 h-16 rounded-full bg-primary-container/20 flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[32px]" style="font-variation-settings: 'FILL' 1;">add_a_photo</span>
+</div>
+<p class="font-label-md text-on-surface-variant mt-xs">Upload Cover Photo</p>
+<p class="font-label-sm text-outline">JPEG or PNG, max 5MB</p>
+</div>
+</section>
+<!-- Form Fields Section -->
+<section class="px-margin space-y-lg">
+<!-- Box Name -->
+<div class="space-y-xs">
+<label class="font-label-md text-on-surface-variant block px-base">Box Name</label>
+<div class="bg-surface-container-lowest rounded-xl p-md custom-shadow">
+<input class="w-full bg-transparent border-none focus:ring-0 p-0 text-body-lg font-body-lg placeholder:text-outline-variant" placeholder="e.g., Summer Camping Gear" type="text"/>
+</div>
+</div>
+<!-- Location Picker -->
+<div class="space-y-xs">
+<label class="font-label-md text-on-surface-variant block px-base">Storage Location</label>
+<button class="w-full bg-surface-container-lowest rounded-xl p-md custom-shadow flex items-center justify-between active:scale-[0.98] transition-transform">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<span class="text-body-lg">Attic - Section B</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant">expand_more</span>
+</button>
+</div>
+<!-- Tags Section -->
+<div class="space-y-xs">
+<div class="flex justify-between items-center px-base">
+<label class="font-label-md text-on-surface-variant">Tags</label>
+<span class="font-label-sm text-outline">Optional</span>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-md custom-shadow">
+<div class="flex flex-wrap gap-xs mb-xs" id="tag-container">
+<span class="inline-flex items-center gap-1 bg-primary-container/10 text-primary px-sm py-1 rounded-full font-label-sm">
+                            Outdoor <span class="material-symbols-outlined text-[14px] cursor-pointer">close</span>
+</span>
+<span class="inline-flex items-center gap-1 bg-primary-container/10 text-primary px-sm py-1 rounded-full font-label-sm">
+                            Gear <span class="material-symbols-outlined text-[14px] cursor-pointer">close</span>
+</span>
+<input class="flex-1 min-w-[80px] bg-transparent border-none focus:ring-0 p-0 font-label-md placeholder:text-outline-variant" placeholder="Add tag..." type="text"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Items Preview Section (Bento Style) -->
+<section class="mt-xl px-margin space-y-md">
+<div class="flex justify-between items-end px-base">
+<div>
+<h2 class="font-headline-sm text-headline-sm-mobile">Box Contents</h2>
+<p class="font-label-sm text-on-surface-variant">2 items added so far</p>
+</div>
+<button class="flex items-center gap-1 text-primary font-label-md active:opacity-70">
+<span class="material-symbols-outlined text-[18px]">add_circle</span> Add Item
+                </button>
+</div>
+<div class="space-y-sm">
+<!-- Item Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-sm flex items-center gap-md custom-shadow border border-white">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist close-up photo of a professional high-altitude camping lantern sitting on a dark grey surface. The lighting is soft and corporate, with subtle green highlights reflecting off the glass. The style is sharp and commercial, fitting a premium inventory management app." src="../assets/images/image-05.jpg"/>
+</div>
+<div class="flex-1">
+<p class="font-body-md font-semibold">Camping Lantern XL</p>
+<p class="font-label-sm text-outline">Quantity: 1</p>
+</div>
+<button class="text-outline-variant hover:text-error active:scale-90 transition-all">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+<!-- Item Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-sm flex items-center gap-md custom-shadow border border-white">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A studio photograph of a folded high-performance synthetic sleeping bag in a vibrant green color. The product is shot against a clean, off-white background with professional studio lighting. The texture of the fabric is clearly visible, evoking a sense of durability and organization." src="../assets/images/image-06.jpg"/>
+</div>
+<div class="flex-1">
+<p class="font-body-md font-semibold">4-Season Sleeping Bag</p>
+<p class="font-label-sm text-outline">Quantity: 2</p>
+</div>
+<button class="text-outline-variant hover:text-error active:scale-90 transition-all">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+<!-- Empty State/Placeholder for next item -->
+<div class="border-2 border-dashed border-outline-variant rounded-xl p-lg flex flex-col items-center justify-center text-outline-variant bg-surface-container-low/30 active:bg-surface-container-low transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-[32px] mb-xs">inventory_2</span>
+<p class="font-label-sm">Tap to add more items to this box</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Action -->
+<div class="fixed bottom-0 left-0 w-full bg-white/80 backdrop-blur-md px-margin py-md ios-bottom-padding border-t border-surface-variant/30 z-50">
+<button class="w-full h-12 bg-primary text-on-primary rounded-xl font-headline-sm flex items-center justify-center gap-xs active:scale-[0.97] transition-all shadow-lg shadow-primary/20">
+            Create Box
+            <span class="material-symbols-outlined text-[20px]">check_circle</span>
+</button>
+</div>
+<!-- Background Subtle Atmospheric Script -->
+<script>
+        // Simple micro-interaction for the upload area
+        const uploadBox = document.querySelector('.aspect-square');
+        uploadBox.addEventListener('click', () => {
+            uploadBox.classList.add('ring-2', 'ring-primary-container');
+            setTimeout(() => uploadBox.classList.remove('ring-2', 'ring-primary-container'), 1000);
+        });
+
+        // Tag behavior simulation
+        const tagInput = document.querySelector('input[placeholder="Add tag..."]');
+        tagInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && tagInput.value.trim() !== '') {
+                const newTag = document.createElement('span');
+                newTag.className = 'inline-flex items-center gap-1 bg-primary-container/10 text-primary px-sm py-1 rounded-full font-label-sm animate-in fade-in zoom-in duration-300';
+                newTag.innerHTML = `${tagInput.value} <span class="material-symbols-outlined text-[14px] cursor-pointer">close</span>`;
+                tagInput.before(newTag);
+                tagInput.value = '';
+            }
+        });
+    </script>
+</body></html>

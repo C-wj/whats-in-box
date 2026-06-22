@@ -1,0 +1,56 @@
+<view class="item-detail-page">
+  <view class="item-topbar">
+    <view class="item-back" bindtap="goBack">‹</view>
+    <view class="item-top-title">物品详情</view>
+    <view class="item-edit-icon" bindtap="editItem">✎</view>
+  </view>
+
+  <view class="item-hero">
+    <image wx:if="{{item.imageUrl}}" src="{{item.imageUrl}}" mode="aspectFill" />
+    <view wx:else class="item-hero__fallback">{{item.initial}}</view>
+    <view class="image-actions">
+      <view class="image-action">⌖</view>
+      <view class="image-action">▧</view>
+    </view>
+  </view>
+
+  <view class="item-info-card">
+    <view class="item-info-head">
+      <view class="item-detail-title">{{item.name}}</view>
+      <view class="qty-pill">数量：{{item.quantity}}</view>
+    </view>
+    <view class="stored-line">▣ {{item.locationPath}}</view>
+    <view class="remarks-block">
+      <view class="remarks-label">备注</view>
+      <view class="remarks-copy">{{item.note || '暂无备注'}}</view>
+    </view>
+  </view>
+
+  <view class="meta-grid">
+    <view class="meta-card">
+      <view class="meta-icon meta-icon--blue">▢</view>
+      <view class="meta-label">最近更新</view>
+      <view class="meta-value">{{item.updatedLabel}}</view>
+    </view>
+    <view class="meta-card">
+      <view class="meta-icon meta-icon--gold">◇</view>
+      <view class="meta-label">标签</view>
+      <view class="meta-value">{{item.tagsText || '暂无标签'}}</view>
+    </view>
+  </view>
+
+  <view class="stored-card">
+    <view class="stored-icon">▤</view>
+    <view class="stored-copy">
+      <view class="meta-label">存放位置</view>
+      <view class="stored-title">{{item.locationPath}}</view>
+    </view>
+    <view class="stored-arrow">›</view>
+  </view>
+
+  <view class="bottom-actions">
+    <button class="delete-btn" bindtap="deleteItem">⌫</button>
+    <button class="move-action" bindtap="moveItem">⇥ 移动物品</button>
+    <button class="edit-action" bindtap="editItem">▣ 编辑详情</button>
+  </view>
+</view>

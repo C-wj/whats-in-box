@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<style>
+        body {
+            background-color: #f9f9f9;
+            color: #1a1c1c;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .custom-shadow {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        .active-interaction:active {
+            transform: scale(0.96);
+            transition: transform 0.1s ease;
+        }
+        .safe-bottom {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-body-md selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation Bar -->
+<!-- Authority Source: JSON (TopAppBar) -->
+<header class="fixed top-0 left-0 w-full z-50 bg-surface h-12 px-margin flex justify-between items-center transition-transform active:scale-95">
+<div class="flex items-center gap-base">
+<button class="p-base hover:opacity-80 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm-mobile text-on-surface">Item Details</h1>
+</div>
+<button class="p-base hover:opacity-80 active:scale-95 transition-transform text-primary">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-12 pb-32">
+<!-- Hero Gallery Section -->
+<section class="relative w-full aspect-square bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional, clean high-angle shot of a sleek Space Grey MacBook Pro resting on a minimalist white desk. The lighting is soft and diffused, creating a premium corporate aesthetic. The background is a slightly out-of-focus modern home office environment with soft green plants. The image has a calm, organized feeling consistent with a high-end storage tracking application." src="../assets/images/image-12.jpg"/>
+<!-- Floating Image Actions -->
+<div class="absolute bottom-margin right-margin flex gap-sm">
+<button class="w-10 h-10 rounded-full bg-surface/80 backdrop-blur-md flex items-center justify-center shadow-sm active-interaction">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="fullscreen">fullscreen</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-surface/80 backdrop-blur-md flex items-center justify-center shadow-sm active-interaction">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="photo_library">photo_library</span>
+</button>
+</div>
+</section>
+<!-- Details Container (Bento-style layout) -->
+<div class="px-margin -mt-6 relative z-10 space-y-gutter">
+<!-- Title & Primary Info Card -->
+<div class="bg-surface-container-lowest rounded-xl p-md custom-shadow border border-[#EDEDED]">
+<div class="flex justify-between items-start mb-xs">
+<h2 class="font-headline-md text-headline-md text-on-surface">MacBook Pro</h2>
+<span class="bg-primary-container/10 text-primary px-sm py-1 rounded-full font-label-sm text-label-sm">
+                        Qty: 1
+                    </span>
+</div>
+<div class="flex items-center gap-xs text-on-surface-variant mb-md">
+<span class="material-symbols-outlined text-[18px]" data-icon="inventory_2">inventory_2</span>
+<span class="font-label-md text-label-md">Work Electronics Box</span>
+</div>
+<div class="pt-md border-t border-surface-variant/50">
+<p class="font-label-sm text-label-sm uppercase text-outline mb-xs tracking-wider">Remarks</p>
+<p class="text-on-surface-variant font-body-md leading-relaxed">
+                        Power adapter in side pocket. Includes USB-C charging cable and original protective sleeve.
+                    </p>
+</div>
+</div>
+<!-- Metadata Bento Grid -->
+<div class="grid grid-cols-2 gap-gutter">
+<div class="bg-surface-container-lowest rounded-xl p-md custom-shadow border border-[#EDEDED]">
+<span class="material-symbols-outlined text-secondary mb-xs" data-icon="calendar_today">calendar_today</span>
+<p class="font-label-sm text-label-sm text-outline mb-1">Last Updated</p>
+<p class="font-label-md text-label-md text-on-surface">Oct 24, 2023</p>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-md custom-shadow border border-[#EDEDED]">
+<span class="material-symbols-outlined text-tertiary mb-xs" data-icon="label">label</span>
+<p class="font-label-sm text-label-sm text-outline mb-1">Tags</p>
+<p class="font-label-md text-label-md text-on-surface">Tech, Work, Asset</p>
+</div>
+</div>
+<!-- Box Location Context Card -->
+<div class="bg-surface-container-lowest rounded-xl p-md custom-shadow border border-[#EDEDED] flex items-center gap-md">
+<div class="w-12 h-12 bg-secondary-container/10 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" data-icon="shelves">shelves</span>
+</div>
+<div class="flex-1">
+<p class="font-label-sm text-label-sm text-outline">Stored at</p>
+<p class="font-headline-sm text-headline-sm text-on-surface">Office Closet • Shelf B</p>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</main>
+<!-- Bottom Fixed Actions -->
+<div class="fixed bottom-0 left-0 w-full bg-surface/90 backdrop-blur-xl safe-bottom border-t border-[#EDEDED] z-50">
+<div class="px-margin py-md flex gap-sm">
+<!-- Delete Action (Secondary/Danger) -->
+<button class="flex-none w-12 h-12 flex items-center justify-center rounded-xl border border-error/20 text-error hover:bg-error/5 active-interaction">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+<!-- Move Action (Secondary) -->
+<button class="flex-1 h-12 flex items-center justify-center gap-xs rounded-xl border border-primary text-primary font-label-md text-label-md hover:bg-primary/5 active-interaction">
+<span class="material-symbols-outlined" data-icon="move_item">move_item</span>
+                Move Item
+            </button>
+<!-- Quick Edit/Primary Action -->
+<button class="flex-1 h-12 flex items-center justify-center gap-xs rounded-xl bg-primary text-on-primary font-label-md text-label-md shadow-md active-interaction">
+<span class="material-symbols-outlined" data-icon="edit_square">edit_square</span>
+                Edit Details
+            </button>
+</div>
+</div>
+<!-- Quick Floating Scan (Contextual FAB Suppression Logic: Not primary screen, but kept for high-utility detail context) -->
+<!-- Rule applied: FAB suppressed on detail screens as per instruction "You MUST suppress the FAB on Settings, Profile, Details, and Transactional screens." -->
+<script>
+        // Simple Interaction Feedback
+        document.querySelectorAll('.active-interaction').forEach(button => {
+            button.addEventListener('touchstart', () => {
+                button.style.opacity = '0.7';
+            });
+            button.addEventListener('touchend', () => {
+                button.style.opacity = '1';
+            });
+        });
+
+        // Safe area padding adjustment for header (if needed on specific devices)
+        window.addEventListener('load', () => {
+            const header = document.querySelector('header');
+            if (window.safeAreaInsets) {
+                header.style.paddingTop = window.safeAreaInsets.top + 'px';
+                header.style.height = (48 + window.safeAreaInsets.top) + 'px';
+            }
+        });
+    </script>
+</body></html>

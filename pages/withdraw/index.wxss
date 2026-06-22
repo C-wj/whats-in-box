@@ -1,0 +1,293 @@
+.withdraw-page {
+  min-height: 100vh;
+  padding-bottom: 260rpx;
+  background: #f9f9f9;
+}
+
+.withdraw-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 30rpx;
+  padding-left: 30rpx;
+  border-bottom: 1rpx solid #dbe4da;
+  background: rgba(249, 249, 249, 0.96);
+}
+
+.withdraw-topbar__btn,
+.withdraw-topbar__more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64rpx;
+  height: 64rpx;
+  color: #007832;
+  font-size: 52rpx;
+  font-weight: 300;
+}
+
+.withdraw-topbar__more {
+  color: #3d4a3d;
+  font-size: 46rpx;
+  font-weight: 800;
+}
+
+.withdraw-topbar__title {
+  color: #007832;
+  font-size: 32rpx;
+  font-weight: 500;
+}
+
+.withdraw-body {
+  padding: 44rpx 32rpx 0;
+}
+
+.withdraw-box-card {
+  display: flex;
+  align-items: center;
+  gap: 26rpx;
+  min-height: 142rpx;
+  padding: 28rpx;
+  border: 1rpx solid #eeeeee;
+  border-radius: 24rpx;
+  background: #ffffff;
+  box-shadow: 0 10rpx 26rpx rgba(0, 0, 0, 0.06);
+}
+
+.withdraw-box-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 14rpx;
+  background: #c8f4d5;
+  color: #007832;
+  font-size: 42rpx;
+  font-weight: 900;
+}
+
+.withdraw-box-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.withdraw-box-name {
+  overflow: hidden;
+  color: #111515;
+  font-size: 34rpx;
+  font-weight: 900;
+  line-height: 44rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.withdraw-box-path {
+  margin-top: 6rpx;
+  overflow: hidden;
+  color: #3d4a3d;
+  font-size: 24rpx;
+  font-weight: 800;
+  line-height: 34rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.withdraw-section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin: 42rpx 0 22rpx;
+}
+
+.withdraw-section-title {
+  color: #111515;
+  font-size: 34rpx;
+  font-weight: 900;
+}
+
+.withdraw-section-count {
+  color: #3d4a3d;
+  font-size: 24rpx;
+  font-weight: 800;
+}
+
+.withdraw-list {
+  display: flex;
+  flex-direction: column;
+  gap: 22rpx;
+}
+
+.withdraw-item {
+  display: flex;
+  align-items: center;
+  gap: 22rpx;
+  min-height: 154rpx;
+  padding: 22rpx;
+  border: 1rpx solid #eeeeee;
+  border-radius: 22rpx;
+  background: #ffffff;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.05);
+}
+
+.withdraw-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 34rpx;
+  height: 34rpx;
+  border: 2rpx solid #b9cbbb;
+  border-radius: 7rpx;
+  color: #ffffff;
+  font-size: 24rpx;
+  font-weight: 900;
+}
+
+.withdraw-check--active {
+  border-color: #007832;
+  background: #007832;
+}
+
+.withdraw-thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 112rpx;
+  height: 112rpx;
+  overflow: hidden;
+  border-radius: 14rpx;
+  background: #f0f1f1;
+  color: #007832;
+  font-size: 38rpx;
+  font-weight: 900;
+}
+
+.withdraw-thumb image {
+  width: 100%;
+  height: 100%;
+}
+
+.withdraw-item-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.withdraw-item-name {
+  overflow: hidden;
+  color: #111515;
+  font-size: 31rpx;
+  font-weight: 900;
+  line-height: 40rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.withdraw-item-meta {
+  margin-top: 6rpx;
+  color: #3d4a3d;
+  font-size: 24rpx;
+  font-weight: 800;
+}
+
+.withdraw-counter {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  height: 66rpx;
+  padding: 5rpx;
+  border-radius: 999rpx;
+  background: #eeeeee;
+}
+
+.counter-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 999rpx;
+  background: #ffffff;
+  color: #111515;
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.counter-value {
+  min-width: 52rpx;
+  color: #111515;
+  font-size: 28rpx;
+  font-weight: 800;
+  text-align: center;
+}
+
+.withdraw-empty {
+  margin-top: 24rpx;
+}
+
+.withdraw-footer {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 60;
+  min-height: calc(236rpx + env(safe-area-inset-bottom));
+  padding: 28rpx 32rpx calc(32rpx + env(safe-area-inset-bottom));
+  border-top: 1rpx solid #dbe4da;
+  background: #ffffff;
+}
+
+.withdraw-footer-label {
+  color: #3d4a3d;
+  font-size: 23rpx;
+  font-weight: 800;
+}
+
+.withdraw-footer-title {
+  margin-top: 6rpx;
+  color: #111515;
+  font-size: 34rpx;
+  font-weight: 900;
+}
+
+.withdraw-clear {
+  position: absolute;
+  top: 44rpx;
+  right: 38rpx;
+  color: #0058bc;
+  font-size: 24rpx;
+  font-weight: 800;
+}
+
+.withdraw-confirm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18rpx;
+  width: 100%;
+  height: 86rpx;
+  margin-top: 26rpx;
+  border-radius: 20rpx;
+  background: #007832;
+  color: #ffffff;
+  font-size: 32rpx;
+  font-weight: 900;
+  box-shadow: 0 12rpx 28rpx rgba(0, 109, 51, 0.22);
+}
+
+.withdraw-confirm-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34rpx;
+  height: 34rpx;
+  border: 3rpx solid #ffffff;
+  border-radius: 999rpx;
+  font-size: 24rpx;
+  line-height: 34rpx;
+}

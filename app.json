@@ -1,0 +1,20 @@
+{
+  "pages": [
+    "pages/home/index",
+    "pages/scan/index",
+    "pages/locations/index",
+    "pages/location-detail/index",
+    "pages/withdraw/index",
+    "pages/item-form/index",
+    "pages/item-detail/index",
+    "pages/search/index",
+    "pages/settings/index"
+  ],
+  "window": {
+    "navigationStyle": "custom",
+    "backgroundColor": "#F7F8F4",
+    "backgroundTextStyle": "dark"
+  },
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents"
+}

@@ -1,0 +1,60 @@
+<view class="withdraw-page">
+  <view class="withdraw-topbar" style="{{nav.centerTopbarStyle}}">
+    <view class="withdraw-topbar__btn" bindtap="goBack">‹</view>
+    <view class="withdraw-topbar__title">取出物品</view>
+    <view class="withdraw-topbar__more">⋮</view>
+  </view>
+
+  <view class="withdraw-body">
+    <view class="withdraw-box-card">
+      <view class="withdraw-box-icon">▣</view>
+      <view class="withdraw-box-copy">
+        <view class="withdraw-box-name">{{box.detailTitle || box.name}}</view>
+        <view class="withdraw-box-path">⌖ {{box.detailLocation || box.path || locationPath}}</view>
+      </view>
+    </view>
+
+    <view class="withdraw-section-head">
+      <view class="withdraw-section-title">选择物品</view>
+      <view class="withdraw-section-count">共 {{totalCount}} 件物品</view>
+    </view>
+
+    <view class="withdraw-list" wx:if="{{items.length}}">
+      <view class="withdraw-item" wx:for="{{items}}" wx:key="id" bindtap="toggleItem" data-index="{{index}}">
+        <view class="withdraw-check {{item.selectedQuantity > 0 ? 'withdraw-check--active' : ''}}">
+          <text wx:if="{{item.selectedQuantity > 0}}">✓</text>
+        </view>
+        <view class="withdraw-thumb">
+          <image wx:if="{{item.imageUrl}}" src="{{item.imageUrl}}" mode="aspectFill" />
+          <text wx:else>{{item.initial}}</text>
+        </view>
+        <view class="withdraw-item-copy">
+          <view class="withdraw-item-name">{{item.name}}</view>
+          <view class="withdraw-item-meta">盒内：{{item.quantity}}</view>
+        </view>
+        <view class="withdraw-counter" catchtap="noop">
+          <view class="counter-btn" catchtap="decrease" data-index="{{index}}">−</view>
+          <view class="counter-value">{{item.selectedQuantity}}</view>
+          <view class="counter-btn" catchtap="increase" data-index="{{index}}">＋</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="empty withdraw-empty" wx:else>
+      <view class="empty-title">暂无可取出的物品</view>
+      <view>这个盒子当前没有可选择的物品。</view>
+    </view>
+  </view>
+
+  <view class="withdraw-footer">
+    <view>
+      <view class="withdraw-footer-label">已选物品</view>
+      <view class="withdraw-footer-title">已选：{{selectedTotal}} 件</view>
+    </view>
+    <view class="withdraw-clear" bindtap="clearAll">清空</view>
+    <button class="withdraw-confirm" bindtap="confirmWithdraw">
+      <text class="withdraw-confirm-icon">✓</text>
+      <text>确认取出</text>
+    </button>
+  </view>
+</view>

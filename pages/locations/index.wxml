@@ -1,0 +1,59 @@
+<view class="page stats-page" style="{{navPaddingStyle}}">
+  <view class="stats-filter">
+    <view
+      wx:for="{{filters}}"
+      wx:key="key"
+      class="stats-chip {{activeFilter === item.key ? 'stats-chip--active' : ''}}"
+      bindtap="onFilterTap"
+      data-key="{{item.key}}"
+    >
+      {{item.name}}
+    </view>
+  </view>
+
+  <view class="stats-grid">
+    <view class="stats-card" wx:for="{{cards}}" wx:key="label">
+      <view class="stats-card__label">{{item.label}}</view>
+      <view class="stats-card__value">{{item.value}}</view>
+    </view>
+  </view>
+
+  <view class="stats-section-head">
+    <view class="stats-section-title">位置分布</view>
+    <view class="stats-section-action">按盒子数</view>
+  </view>
+
+  <view class="distribution-list">
+    <view class="distribution-card" wx:for="{{distribution}}" wx:key="name">
+      <view class="distribution-row">
+        <view class="distribution-name">{{item.name}}</view>
+        <view class="distribution-badge">{{item.count}} 盒</view>
+      </view>
+      <view class="distribution-track">
+        <view
+          class="distribution-fill {{item.isBlue ? 'distribution-fill--blue' : ''}}"
+          style="width: {{item.percent}}%;"
+        ></view>
+      </view>
+    </view>
+  </view>
+
+  <view class="bottom-nav">
+    <view class="bottom-nav__item" bindtap="goHome">
+      <image class="bottom-nav__icon" src="/assets/tab/home.svg" mode="aspectFit" />
+      <text class="bottom-nav__label">首页</text>
+    </view>
+    <view class="bottom-nav__item" bindtap="goScan">
+      <image class="bottom-nav__icon" src="/assets/tab/scan.svg" mode="aspectFit" />
+      <text class="bottom-nav__label">扫描</text>
+    </view>
+    <view class="bottom-nav__item bottom-nav__item--active">
+      <image class="bottom-nav__icon" src="/assets/tab/stats-active.svg" mode="aspectFit" />
+      <text class="bottom-nav__label">统计</text>
+    </view>
+    <view class="bottom-nav__item" bindtap="goSettings">
+      <image class="bottom-nav__icon" src="/assets/tab/me.svg" mode="aspectFit" />
+      <text class="bottom-nav__label">我的</text>
+    </view>
+  </view>
+</view>

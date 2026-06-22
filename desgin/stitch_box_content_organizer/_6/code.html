@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>whats-in-box | Profile</title>
+<!-- Theme Configuration -->
+<style>
+        body {
+            background-color: #F7F7F7;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .card-shadow {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        .active-scale:active {
+            transform: scale(0.97);
+        }
+        .safe-bottom {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-surface">
+<!-- Top AppBar (from JSON) -->
+<header class="fixed top-0 left-0 w-full z-50 bg-surface flex justify-between items-center h-12 px-margin">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary text-[24px]">arrow_back</span>
+</div>
+<h1 class="font-headline-sm text-headline-sm-mobile text-on-surface">whats-in-box</h1>
+<div class="w-6"></div> <!-- Spacer for center alignment -->
+</header>
+<main class="pt-12 pb-32 px-margin space-y-lg">
+<!-- User Profile Section -->
+<section class="mt-lg flex flex-col items-center">
+<div class="relative group">
+<div class="w-24 h-24 rounded-full overflow-hidden border-4 border-surface-container-lowest card-shadow">
+<img class="w-full h-full object-cover" data-alt="A clean, studio-shot portrait of a friendly professional smiling slightly, framed as a modern digital avatar. The background is a soft, solid mint green, matching the application's primary palette. High-key lighting highlights the clarity and premium feel, consistent with a modern corporate-minimalist aesthetic. Professional photography style with shallow depth of field." src="../assets/images/image-14.jpg"/>
+</div>
+<button class="absolute bottom-0 right-0 bg-primary text-on-primary p-1.5 rounded-full card-shadow active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+</div>
+<div class="mt-md text-center">
+<h2 class="font-headline-md text-headline-md">Alex Inventory</h2>
+<p class="font-label-md text-label-md text-on-surface-variant">Standard Plan • Since 2023</p>
+</div>
+</section>
+<!-- Stats Dashboard (Bento Grid Style) -->
+<section class="grid grid-cols-2 gap-gutter">
+<div class="col-span-2 bg-surface-container-lowest p-md rounded-xl card-shadow flex items-center justify-between border border-[#EDEDED]">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Total Items</p>
+<p class="font-headline-lg text-headline-lg text-primary">156</p>
+</div>
+<div class="w-12 h-12 bg-primary-container/20 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[32px]">inventory_2</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-md rounded-xl card-shadow border border-[#EDEDED] flex flex-col gap-xs">
+<div class="text-tertiary">
+<span class="material-symbols-outlined text-[24px]">package_2</span>
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm">24</p>
+<p class="font-label-md text-label-md text-on-surface-variant">Total Boxes</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-md rounded-xl card-shadow border border-[#EDEDED] flex flex-col gap-xs">
+<div class="text-secondary">
+<span class="material-symbols-outlined text-[24px]">label</span>
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm">8</p>
+<p class="font-label-md text-label-md text-on-surface-variant">Active Labels</p>
+</div>
+</div>
+</section>
+<!-- Menu List Section -->
+<section class="space-y-sm">
+<h3 class="font-label-sm text-label-sm text-on-surface-variant uppercase px-1">Management</h3>
+<div class="bg-surface-container-lowest rounded-xl card-shadow border border-[#EDEDED] overflow-hidden">
+<!-- Label Management -->
+<button class="w-full flex items-center justify-between p-md active:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant">style</span>
+<span class="font-body-lg text-body-lg">Label Management</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">chevron_right</span>
+</button>
+<div class="h-[0.5px] bg-outline-variant/30 mx-md"></div>
+<!-- Export Data -->
+<button class="w-full flex items-center justify-between p-md active:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant">database</span>
+<span class="font-body-lg text-body-lg">Export Data (Excel/CSV)</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">chevron_right</span>
+</button>
+</div>
+<h3 class="font-label-sm text-label-sm text-on-surface-variant uppercase px-1 pt-md">Application</h3>
+<div class="bg-surface-container-lowest rounded-xl card-shadow border border-[#EDEDED] overflow-hidden">
+<!-- Settings -->
+<button class="w-full flex items-center justify-between p-md active:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant">settings</span>
+<span class="font-body-lg text-body-lg">Settings</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">chevron_right</span>
+</button>
+<div class="h-[0.5px] bg-outline-variant/30 mx-md"></div>
+<!-- About Us -->
+<button class="w-full flex items-center justify-between p-md active:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant">info</span>
+<span class="font-body-lg text-body-lg">About Us</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Logout Button -->
+<button class="w-full py-md text-error font-headline-sm active:opacity-60 transition-opacity">
+            Sign Out
+        </button>
+</main>
+<!-- BottomNavBar (from JSON) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 h-[56px] flex justify-around items-center bg-surface border-t border-surface-variant pb-safe shadow-sm">
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[24px]">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[24px]">center_focus_strong</span>
+<span class="font-label-sm text-label-sm">Scan</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[24px]">analytics</span>
+<span class="font-label-sm text-label-sm">Stats</span>
+</a>
+<!-- ACTIVE TAB: Me -->
+<a class="flex flex-col items-center justify-center text-primary active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-sm text-label-sm">Me</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for buttons
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('click', function(e) {
+                // Subtle haptic-like effect simulation
+                if (window.navigator.vibrate) {
+                    window.navigator.vibrate(5);
+                }
+            });
+        });
+
+        // Dynamic welcome based on time of day
+        const updateGreeting = () => {
+            const hour = new Date().getHours();
+            const welcomeMsg = hour < 12 ? 'Good Morning' : hour < 18 ? 'Good Afternoon' : 'Good Evening';
+            // Logic to update UI if greeting element exists
+        };
+        updateGreeting();
+    </script>
+</body></html>

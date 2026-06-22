@@ -1,0 +1,149 @@
+.stats-page {
+  min-height: 100vh;
+  padding: 24rpx 32rpx 200rpx;
+  background: #f8f9f7;
+}
+
+.stats-filter {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  margin-bottom: 30rpx;
+  overflow-x: auto;
+  padding-bottom: 2rpx;
+  white-space: nowrap;
+}
+
+.stats-chip {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  height: 72rpx;
+  padding: 0 34rpx;
+  border-radius: 999rpx;
+  background: #e6ebe8;
+  color: #3d4a3d;
+  font-size: 28rpx;
+  font-weight: 900;
+  letter-spacing: 1rpx;
+}
+
+.stats-chip--active {
+  background: #007a3d;
+  color: #ffffff;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22rpx;
+}
+
+.stats-card {
+  min-height: 198rpx;
+  padding: 32rpx 30rpx;
+  border: 2rpx solid rgba(61, 74, 61, 0.1);
+  border-radius: 28rpx;
+  background: #ffffff;
+  box-shadow: 0 8rpx 18rpx rgba(26, 28, 28, 0.06);
+}
+
+.stats-card__label {
+  color: #3d4a3d;
+  font-size: 29rpx;
+  font-weight: 700;
+  line-height: 40rpx;
+}
+
+.stats-card__value {
+  margin-top: 28rpx;
+  color: #17191c;
+  font-size: 58rpx;
+  font-weight: 900;
+  line-height: 64rpx;
+  letter-spacing: -2rpx;
+}
+
+.stats-section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin: 40rpx 0 22rpx;
+}
+
+.stats-section-title {
+  color: #17191c;
+  font-size: 42rpx;
+  font-weight: 900;
+  line-height: 52rpx;
+  letter-spacing: -1rpx;
+}
+
+.stats-section-action {
+  padding-bottom: 6rpx;
+  color: #3d4a3d;
+  font-size: 26rpx;
+  font-weight: 700;
+}
+
+.distribution-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.distribution-card {
+  min-height: 150rpx;
+  padding: 28rpx 28rpx 30rpx;
+  border: 2rpx solid rgba(61, 74, 61, 0.1);
+  border-radius: 28rpx;
+  background: #ffffff;
+  box-shadow: 0 8rpx 18rpx rgba(26, 28, 28, 0.05);
+}
+
+.distribution-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20rpx;
+  margin-bottom: 22rpx;
+}
+
+.distribution-name {
+  color: #17191c;
+  font-size: 32rpx;
+  font-weight: 900;
+  line-height: 42rpx;
+}
+
+.distribution-badge {
+  min-width: 94rpx;
+  padding: 12rpx 20rpx;
+  border-radius: 16rpx;
+  background: #c8f4d5;
+  color: #007a3d;
+  font-size: 26rpx;
+  font-weight: 900;
+  line-height: 32rpx;
+  text-align: center;
+}
+
+.distribution-track {
+  position: relative;
+  height: 16rpx;
+  overflow: hidden;
+  border-radius: 999rpx;
+  background: #e3e7e4;
+}
+
+.distribution-fill {
+  height: 100%;
+  min-width: 0;
+  border-radius: 999rpx;
+  background: #00843f;
+}
+
+.distribution-fill--blue {
+  background: #0a84ff;
+}

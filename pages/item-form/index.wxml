@@ -1,0 +1,140 @@
+<view class="page page--plain">
+  <block wx:if="{{isBoxMode}}">
+    <view class="form-topbar">
+      <view class="form-back" bindtap="goBack">‹</view>
+      <view class="form-title">{{id ? '编辑盒子' : '新增盒子'}}</view>
+      <view class="form-spacer"></view>
+    </view>
+
+    <view class="cover-upload" bindtap="chooseCover">
+      <image wx:if="{{boxForm.coverUrl}}" src="{{boxForm.coverUrl}}" mode="aspectFill" />
+      <block wx:else>
+        <view class="cover-icon">▣</view>
+        <view class="cover-title">上传封面照片</view>
+        <view class="cover-sub">支持图片上传，最大 5 兆</view>
+      </block>
+    </view>
+
+    <view class="box-field">
+      <view class="field-line">
+        <text>盒子名称</text>
+      </view>
+      <input class="box-input" value="{{boxForm.name}}" placeholder="例如：夏季露营装备" bindinput="onBoxNameInput" />
+    </view>
+
+    <view class="box-field">
+      <view class="field-line">
+        <text>存放位置</text>
+      </view>
+      <picker mode="selector" range="{{locationNames}}" value="{{locationIndex}}" bindchange="onLocationChange">
+        <view class="box-picker">
+          <text class="picker-pin">⌖</text>
+          <text>{{selectedLocation.path || '阁楼二区'}}</text>
+          <text class="picker-arrow">⌄</text>
+        </view>
+      </picker>
+    </view>
+
+    <view class="box-field">
+      <view class="field-line">
+        <text>标签</text>
+        <text class="optional">选填</text>
+      </view>
+      <view class="tag-input-card">
+        <view class="form-tag">户外 ×</view>
+        <view class="form-tag">装备 ×</view>
+        <input class="tag-input" value="{{boxForm.tagsText}}" placeholder="添加标签…" bindinput="onBoxTagsInput" />
+      </view>
+    </view>
+
+    <view class="box-contents-head">
+      <view>
+        <view class="contents-title">盒内物品</view>
+        <view class="contents-count">已添加 {{boxContents.length}} 件物品</view>
+      </view>
+      <view class="contents-add">⊕ 添加物品</view>
+    </view>
+
+    <view class="form-content-list">
+      <view class="form-content-row" wx:for="{{boxContents}}" wx:key="id">
+        <image class="form-content-img" src="{{item.imageUrl}}" mode="aspectFill" />
+        <view class="form-content-main">
+          <view class="form-content-title">{{item.name}}</view>
+          <view class="form-content-meta">数量：{{item.quantity}}</view>
+        </view>
+        <view class="form-content-delete">⌫</view>
+      </view>
+    </view>
+
+    <view class="add-more-box">
+      <view class="add-more-icon">▤</view>
+      <view>点击继续添加盒内物品</view>
+    </view>
+
+    <view class="footer-actions box-footer">
+      <button class="primary-btn" bindtap="saveBox">创建盒子 ⊙</button>
+    </view>
+  </block>
+
+  <block wx:else>
+    <view class="topbar">
+      <view>
+        <view class="topbar__title">{{id ? '编辑物品' : '新增物品'}}</view>
+        <view class="topbar__sub">名称、数量、位置、标签、备注和图片</view>
+      </view>
+      <view class="topbar__actions">
+        <button class="icon-btn" bindtap="goBack">返回</button>
+      </view>
+    </view>
+
+    <view class="form-card">
+      <view class="field">
+        <view class="field-label">名称 *</view>
+        <input class="input" value="{{form.name}}" placeholder="例如：充电数据线" bindinput="onNameInput" />
+      </view>
+
+      <view class="field">
+        <view class="field-label">数量 *</view>
+        <input class="input" type="number" value="{{form.quantity}}" placeholder="默认 1" bindinput="onQuantityInput" />
+      </view>
+
+      <view class="field">
+        <view class="field-label">所在位置 *</view>
+        <picker mode="selector" range="{{locationNames}}" value="{{locationIndex}}" bindchange="onLocationChange">
+          <view class="picker">
+            <text>{{selectedLocation.path || '请选择位置'}}</text>
+            <text>›</text>
+          </view>
+        </picker>
+      </view>
+
+      <view class="field">
+        <view class="field-label">标签</view>
+        <input class="input" value="{{form.tagsText}}" placeholder="用逗号分隔，例如：数码，线材" bindinput="onTagsInput" />
+      </view>
+
+      <view class="field">
+        <view class="field-label">备注</view>
+        <textarea class="textarea" value="{{form.note}}" placeholder="补充型号、颜色、使用说明等" bindinput="onNoteInput" />
+      </view>
+
+      <view class="field">
+        <view class="field-label">图片（最多 3 张）</view>
+        <view class="image-grid">
+          <view class="image-cell" wx:for="{{form.images}}" wx:key="tempFilePath">
+            <image src="{{item.url || item.tempFilePath}}" mode="aspectFill" />
+            <button class="image-remove" bindtap="removeImage" data-index="{{index}}">×</button>
+          </view>
+          <button class="image-add" wx:if="{{form.images.length < 3}}" bindtap="chooseImage">
+            <text>＋</text>
+            <text>添加图片</text>
+          </button>
+        </view>
+      </view>
+    </view>
+
+    <view class="footer-actions">
+      <button class="primary-btn" bindtap="saveItem">{{id ? '保存修改' : '创建物品'}}</button>
+    </view>
+  </block>
+</view>

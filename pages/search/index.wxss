@@ -1,0 +1,13 @@
+.search-card {
+  padding: 20rpx;
+}
+
+.search-shell--compact {
+  margin-top: 0;
+}
+
+.item-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}

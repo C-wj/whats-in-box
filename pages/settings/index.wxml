@@ -1,0 +1,89 @@
+<view class="page page--plain">
+  <view class="topbar topbar--center" style="{{nav.centerTopbarStyle}}">
+    <button class="nav-back" bindtap="goHome">‹</button>
+    <view class="topbar__title topbar__title--dark">箱里有什么</view>
+  </view>
+
+  <view class="profile-head">
+    <view class="avatar-wrap">
+      <image class="avatar" src="/assets/images/image-14.jpg" mode="aspectFill" />
+      <view class="avatar-edit">✎</view>
+    </view>
+    <view class="profile-name">我的收纳</view>
+    <view class="profile-meta">标准方案 · 自 2023 年起</view>
+  </view>
+
+  <view class="total-card card">
+    <view>
+      <view class="stat-label">物品总数</view>
+      <view class="total-value">{{stats.itemCount}}</view>
+    </view>
+    <view class="stat-icon">▣</view>
+  </view>
+
+  <view class="mini-grid">
+    <view class="mini-card card">
+      <view class="mini-icon mini-icon--orange">◇</view>
+      <view class="mini-value">{{stats.locationCount}}</view>
+      <view class="mini-label">盒子总数</view>
+    </view>
+    <view class="mini-card card">
+      <view class="mini-icon mini-icon--blue">▱</view>
+      <view class="mini-value">{{stats.labelCount}}</view>
+      <view class="mini-label">启用标签</view>
+    </view>
+  </view>
+
+  <view class="menu-section">
+    <view class="menu-heading">管理</view>
+    <view class="menu-card card">
+      <button class="menu-row" bindtap="goLocations">
+        <text class="menu-icon">⌑</text>
+        <text class="menu-title">统计看板</text>
+        <text class="menu-arrow">›</text>
+      </button>
+      <button class="menu-row" bindtap="exportData">
+        <text class="menu-icon">▤</text>
+        <text class="menu-title">导出数据</text>
+        <text class="menu-arrow">›</text>
+      </button>
+    </view>
+  </view>
+
+  <view class="menu-section">
+    <view class="menu-heading">应用</view>
+    <view class="menu-card card">
+      <button class="menu-row" bindtap="checkHealth">
+        <text class="menu-icon">⚙</text>
+        <text class="menu-title">服务状态 · {{serviceStatus}}</text>
+        <text class="menu-arrow">›</text>
+      </button>
+      <button class="menu-row">
+        <text class="menu-icon">ⓘ</text>
+        <text class="menu-title">关于我们</text>
+        <text class="menu-arrow">›</text>
+      </button>
+    </view>
+  </view>
+
+  <button class="sign-out" bindtap="logout">退出登录</button>
+
+  <view class="bottom-nav">
+    <view class="bottom-nav__item" bindtap="goHome">
+      <image class="bottom-nav__icon" src="/assets/tab/home.svg" mode="aspectFit" />
+      <text class="bottom-nav__label">首页</text>
+    </view>
+    <view class="bottom-nav__item" bindtap="goScan">
+      <image class="bottom-nav__icon" src="/assets/tab/scan.svg" mode="aspectFit" />
+      <text class="bottom-nav__label">扫描</text>
+    </view>
+    <view class="bottom-nav__item" bindtap="goLocations">
+      <image class="bottom-nav__icon" src="/assets/tab/stats.svg" mode="aspectFit" />
+      <text class="bottom-nav__label">统计</text>
+    </view>
+    <view class="bottom-nav__item bottom-nav__item--active">
+      <image class="bottom-nav__icon" src="/assets/tab/me-active.svg" mode="aspectFit" />
+      <text class="bottom-nav__label">我的</text>
+    </view>
+  </view>
+</view>

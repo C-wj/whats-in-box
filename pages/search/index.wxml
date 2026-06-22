@@ -1,0 +1,56 @@
+<view class="page page--plain">
+  <view class="topbar">
+    <view>
+      <view class="topbar__title">搜索物品</view>
+      <view class="topbar__sub">按名称、标签、位置快速定位</view>
+    </view>
+    <view class="topbar__actions">
+      <button class="icon-btn" bindtap="goBack">返回</button>
+    </view>
+  </view>
+
+  <view class="search-card card">
+    <view class="search-shell search-shell--compact">
+      <text>查</text>
+      <input
+        class="search-input"
+        placeholder="例如：数据线"
+        value="{{q}}"
+        confirm-type="search"
+        focus
+        bindinput="onInput"
+        bindconfirm="onConfirm"
+      />
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-head">
+      <view class="section-title">搜索结果</view>
+      <view class="section-action">{{results.length}} 条</view>
+    </view>
+
+    <view class="item-list" wx:if="{{results.length}}">
+      <view class="item-row" wx:for="{{results}}" wx:key="id" bindtap="goItemDetail" data-id="{{item.id}}">
+        <view class="thumb">
+          <image wx:if="{{item.imageUrl}}" src="{{item.imageUrl}}" mode="aspectFill" />
+          <text wx:else>{{item.initial}}</text>
+        </view>
+        <view class="item-main">
+          <view class="item-title">{{item.name}}</view>
+          <view class="item-meta">{{item.locationPath}}</view>
+          <view class="item-meta">数量 {{item.quantity}} · 更新 {{item.updatedLabel}}</view>
+          <view class="tag-list" wx:if="{{item.tags.length}}">
+            <text class="tag" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this">{{tag}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="empty" wx:else>
+      <view class="empty-title">{{searched ? '没有找到' : '输入关键词开始搜索'}}</view>
+      <view>可以搜索“数据线”“冬季”“卧室”等关键词。</view>
+    </view>
+  </view>
+</view>
+

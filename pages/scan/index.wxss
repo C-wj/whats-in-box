@@ -1,0 +1,193 @@
+.scan-page {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: #101514;
+}
+
+.scan-bg {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  filter: blur(2rpx) grayscale(15%);
+  transform: scale(1.08);
+}
+
+.scan-dim {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.42);
+}
+
+.scan-topbar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 32rpx;
+  padding-left: 32rpx;
+  color: #ffffff;
+}
+
+.scan-back,
+.scan-spacer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72rpx;
+  height: 72rpx;
+}
+
+.scan-back {
+  border-radius: 999rpx;
+  background: rgba(0, 0, 0, 0.24);
+  font-size: 58rpx;
+  font-weight: 300;
+}
+
+.scan-title {
+  font-size: 34rpx;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.scanner-wrap {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-height: calc(100vh - 112rpx);
+  padding-top: 300rpx;
+}
+
+.scanner-frame {
+  position: relative;
+  width: 520rpx;
+  height: 520rpx;
+  border: 3rpx solid rgba(255, 255, 255, 0.34);
+  border-radius: 48rpx;
+  background: rgba(255, 255, 255, 0.03);
+  overflow: hidden;
+}
+
+.scan-line {
+  position: absolute;
+  top: 36rpx;
+  right: 28rpx;
+  left: 28rpx;
+  height: 4rpx;
+  background: linear-gradient(90deg, transparent, #07c160, transparent);
+  box-shadow: 0 0 28rpx #07c160;
+  animation: scanLine 2.8s ease-in-out infinite;
+}
+
+.corner {
+  position: absolute;
+  width: 64rpx;
+  height: 64rpx;
+  border-color: #07c160;
+  border-style: solid;
+  border-width: 8rpx;
+}
+
+.corner--tl {
+  top: -4rpx;
+  left: -4rpx;
+  border-right: 0;
+  border-bottom: 0;
+  border-top-left-radius: 40rpx;
+}
+
+.corner--tr {
+  top: -4rpx;
+  right: -4rpx;
+  border-bottom: 0;
+  border-left: 0;
+  border-top-right-radius: 40rpx;
+}
+
+.corner--bl {
+  bottom: -4rpx;
+  left: -4rpx;
+  border-top: 0;
+  border-right: 0;
+  border-bottom-left-radius: 40rpx;
+}
+
+.corner--br {
+  right: -4rpx;
+  bottom: -4rpx;
+  border-top: 0;
+  border-left: 0;
+  border-bottom-right-radius: 40rpx;
+}
+
+.scan-hint {
+  margin-top: 60rpx;
+  padding: 18rpx 34rpx;
+  border-radius: 999rpx;
+  background: rgba(0, 0, 0, 0.36);
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 26rpx;
+  font-weight: 800;
+}
+
+.scan-actions {
+  display: flex;
+  gap: 70rpx;
+  margin-top: 86rpx;
+}
+
+.scan-action {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 24rpx;
+  font-weight: 800;
+}
+
+.scan-action__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 112rpx;
+  height: 112rpx;
+  margin-bottom: 16rpx;
+  border: 2rpx solid rgba(255, 255, 255, 0.28);
+  border-radius: 999rpx;
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font-size: 42rpx;
+}
+
+.scan-action--active .scan-action__icon {
+  background: rgba(7, 193, 96, 0.9);
+}
+
+.scan-bottom-nav {
+  background: #f9f9f9;
+}
+
+@keyframes scanLine {
+  0%,
+  100% {
+    top: 36rpx;
+  }
+
+  50% {
+    top: 480rpx;
+  }
+}
