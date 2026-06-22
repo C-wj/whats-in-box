@@ -26,6 +26,10 @@ module.exports = {
     return request({ url: '/locations' });
   },
 
+  getLocation(id) {
+    return request({ url: `/locations/${id}` });
+  },
+
   createLocation(data) {
     return request({ url: '/locations', method: 'POST', data });
   },
@@ -62,6 +66,14 @@ module.exports = {
     });
   },
 
+  withdrawItems(locationId, items) {
+    return request({
+      url: '/items/withdraw',
+      method: 'POST',
+      data: { locationId, items },
+    });
+  },
+
   deleteItem(id) {
     return request({ url: `/items/${id}`, method: 'DELETE' });
   },
@@ -70,10 +82,13 @@ module.exports = {
     return request({ url: withQuery('/search/items', { q }) });
   },
 
+  statsSummary() {
+    return request({ url: '/stats/summary' });
+  },
+
   uploadImage,
 
   exportData() {
     return request({ url: '/export' });
   },
 };
-

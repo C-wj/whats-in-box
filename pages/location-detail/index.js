@@ -1,6 +1,5 @@
 const api = require('../../utils/api');
-const mock = require('../../utils/mock');
-const { flattenLocations, normalizeItem, unwrapList } = require('../../utils/format');
+const { buildAssetUrl, normalizeItem, unwrapList } = require('../../utils/format');
 
 Page({
   data: {
@@ -11,6 +10,7 @@ Page({
     box: {},
     items: [],
     children: [],
+    logs: [],
   },
 
   onLoad(options) {
@@ -25,31 +25,41 @@ Page({
 
   async loadDetail() {
     const id = Number(this.data.id);
-    const [locationPayload, itemPayload] = await Promise.all([
-      api.listLocations().catch(() => mock.locations),
-      api.listItems({ locationId: id }).catch(() => mock.items.filter((item) => Number(item.locationId) === id)),
-    ]);
+    try {
+      const payload = await api.getLocation(id);
+      const current = payload.location || payload.data || payload;
+      const items = unwrapList(payload, ['items']).map(normalizeItem);
+      const children = unwrapList(payload, ['children']);
+      const logs = unwrapList(payload, ['logs']).map((log) => ({
+        id: log.id,
+        date: log.createdAt ? log.createdAt.slice(0, 16).replace('T', ' ') : '刚刚',
+        copy: formatLogCopy(log),
+      }));
 
-    const flatLocations = flattenLocations(unwrapList(locationPayload, ['locations', 'data']));
-    const current = flatLocations.find((location) => Number(location.id) === id) || {};
-    const children = flatLocations.filter((location) => Number(location.parentId) === id);
-    const items = unwrapList(itemPayload, ['items', 'data']).map(normalizeItem);
-
-    this.setData({
-      box: Object.assign(
-        {
-          name: this.data.name,
-          path: this.data.path,
-          tags: [],
-          itemCount: items.length,
-          heroUrl: '/assets/images/image-07.jpg',
-          detailUpdatedLabel: '2天前',
-        },
-        current,
-      ),
-      children,
-      items,
-    });
+      this.setData({
+        box: Object.assign(
+          {
+            name: this.data.name,
+            path: this.data.path,
+            tags: [],
+            itemCount: items.length,
+            heroUrl: '/assets/images/image-07.jpg',
+            detailUpdatedLabel: '刚刚',
+          },
+          current,
+          {
+            coverUrl: buildAssetUrl(current.coverUrl || ''),
+            heroUrl: buildAssetUrl(current.coverUrl || current.heroUrl || '/assets/images/image-07.jpg'),
+          },
+        ),
+        children,
+        items,
+        logs,
+      });
+    } catch (error) {
+      this.setData({ box: { name: this.data.name, path: this.data.path, tags: [] }, children: [], items: [], logs: [] });
+      wx.showToast({ title: '盒子详情加载失败', icon: 'none' });
+    }
   },
 
   goNewItem() {
@@ -91,3 +101,21 @@ Page({
     wx.navigateBack();
   },
 });
+
+function formatLogCopy(log) {
+  const name = log.itemName ? `“${log.itemName}”` : '物品';
+  switch (log.action) {
+    case 'create':
+      return `已添加${name}。`;
+    case 'update':
+      return `已更新${name}。`;
+    case 'move':
+      return `已移动${name}。`;
+    case 'withdraw':
+      return `已取出${name}${Math.abs(Number(log.quantityDelta) || 0)}件。`;
+    case 'delete':
+      return `已删除${name}。`;
+    default:
+      return `已操作${name}。`;
+  }
+}

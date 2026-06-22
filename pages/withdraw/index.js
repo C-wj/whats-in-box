@@ -1,6 +1,4 @@
 const api = require('../../utils/api');
-const config = require('../../utils/config');
-const mock = require('../../utils/mock');
 const { flattenLocations, normalizeItem, unwrapList } = require('../../utils/format');
 
 function normalizeWithdrawItem(item) {
@@ -38,30 +36,35 @@ Page({
 
   async loadWithdrawData() {
     const locationId = Number(this.data.locationId);
-    const [locationPayload, itemPayload] = await Promise.all([
-      api.listLocations().catch(() => mock.locations),
-      api.listItems({ locationId }).catch(() => mock.items.filter((item) => Number(item.locationId) === locationId)),
-    ]);
+    try {
+      const [locationPayload, itemPayload] = await Promise.all([
+        api.listLocations(),
+        api.listItems({ locationId }),
+      ]);
 
-    const locations = flattenLocations(unwrapList(locationPayload, ['locations', 'data']));
-    const current = locations.find((location) => Number(location.id) === locationId) || {};
-    const items = unwrapList(itemPayload, ['items', 'data']).map(normalizeWithdrawItem);
-    const totalStock = items.reduce((sum, item) => sum + item.quantity, 0);
-    const box = Object.assign(
-      {
-        name: this.data.box.name,
-        path: this.data.locationPath,
-        itemCount: totalStock,
-      },
-      current,
-    );
+      const locations = flattenLocations(unwrapList(locationPayload, ['locations', 'data']));
+      const current = locations.find((location) => Number(location.id) === locationId) || {};
+      const items = unwrapList(itemPayload, ['items', 'data']).map(normalizeWithdrawItem);
+      const totalStock = items.reduce((sum, item) => sum + item.quantity, 0);
+      const box = Object.assign(
+        {
+          name: this.data.box.name,
+          path: this.data.locationPath,
+          itemCount: totalStock,
+        },
+        current,
+      );
 
-    this.setData({
-      box,
-      items,
-      totalCount: box.detailItemCount || box.itemCount || totalStock,
-    });
-    this.updateSelectedSummary(items);
+      this.setData({
+        box,
+        items,
+        totalCount: box.detailItemCount || box.itemCount || totalStock,
+      });
+      this.updateSelectedSummary(items);
+    } catch (error) {
+      this.setData({ items: [], totalCount: 0, selectedTotal: 0, selectedKinds: 0 });
+      wx.showToast({ title: '取出数据加载失败', icon: 'none' });
+    }
   },
 
   toggleItem(event) {
@@ -124,27 +127,18 @@ Page({
       return;
     }
 
-    if (config.useMock) {
-      wx.showToast({ title: `已取出 ${this.data.selectedTotal} 件`, icon: 'success' });
-      setTimeout(() => wx.navigateBack(), 500);
-      return;
-    }
-
     wx.showLoading({ title: '取出中' });
     try {
-      await Promise.all(
-        selectedItems.map((item) =>
-          api.updateItem(item.id, {
-            quantity: Math.max(0, item.quantity - item.selectedQuantity),
-          }),
-        ),
+      await api.withdrawItems(
+        Number(this.data.locationId),
+        selectedItems.map((item) => ({ itemId: Number(item.id), quantity: Number(item.selectedQuantity) })),
       );
       wx.hideLoading();
       wx.showToast({ title: '已取出', icon: 'success' });
       setTimeout(() => wx.navigateBack(), 500);
     } catch (error) {
       wx.hideLoading();
-      wx.showToast({ title: '取出接口未就绪', icon: 'none' });
+      wx.showToast({ title: '取出失败', icon: 'none' });
     }
   },
 

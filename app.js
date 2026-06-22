@@ -11,7 +11,7 @@ App({
   onLaunch() {
     this.initNavigation();
     this.ensureLogin().catch(() => {
-      // 后端未就绪时继续使用本地示例数据。
+      wx.showToast({ title: '登录服务不可用', icon: 'none' });
     });
   },
 

@@ -89,22 +89,20 @@
 
   <view class="history-section">
     <view class="contents-title">记录</view>
-    <view class="timeline">
-      <view class="timeline-row timeline-row--active">
+    <view class="timeline" wx:if="{{logs.length}}">
+      <view
+        class="timeline-row {{index === 0 ? 'timeline-row--active' : ''}}"
+        wx:for="{{logs}}"
+        wx:key="id"
+      >
         <view class="timeline-dot"></view>
         <view>
-          <view class="timeline-date">今天 10:45</view>
-          <view class="timeline-copy">已将“保暖内衣”添加到盒子。</view>
-        </view>
-      </view>
-      <view class="timeline-row">
-        <view class="timeline-dot"></view>
-        <view>
-          <view class="timeline-date">2023-10-12</view>
-          <view class="timeline-copy">盒子从“客厅”移动到“阁楼”。</view>
+          <view class="timeline-date">{{item.date}}</view>
+          <view class="timeline-copy">{{item.copy}}</view>
         </view>
       </view>
     </view>
+    <view class="empty" wx:else>暂无操作记录</view>
   </view>
 
   <view class="detail-fab" bindtap="goNewItem">＋</view>

@@ -29,7 +29,7 @@
       <picker mode="selector" range="{{locationNames}}" value="{{locationIndex}}" bindchange="onLocationChange">
         <view class="box-picker">
           <text class="picker-pin">⌖</text>
-          <text>{{selectedLocation.path || '阁楼二区'}}</text>
+          <text>{{selectedLocation.path || '不设置父级位置'}}</text>
           <text class="picker-arrow">⌄</text>
         </view>
       </picker>
@@ -41,9 +41,7 @@
         <text class="optional">选填</text>
       </view>
       <view class="tag-input-card">
-        <view class="form-tag">户外 ×</view>
-        <view class="form-tag">装备 ×</view>
-        <input class="tag-input" value="{{boxForm.tagsText}}" placeholder="添加标签…" bindinput="onBoxTagsInput" />
+        <input class="tag-input" value="{{boxForm.tagsText}}" placeholder="用逗号分隔，例如：季节，衣物" bindinput="onBoxTagsInput" />
       </view>
     </view>
 
@@ -72,7 +70,7 @@
     </view>
 
     <view class="footer-actions box-footer">
-      <button class="primary-btn" bindtap="saveBox">创建盒子 ⊙</button>
+      <button class="primary-btn" bindtap="saveBox">{{id ? '保存盒子' : '创建盒子'}} ⊙</button>
     </view>
   </block>
 

@@ -1,7 +1,12 @@
 const api = require('../../utils/api');
-const config = require('../../utils/config');
-const mock = require('../../utils/mock');
-const { flattenLocations, normalizeItem, unwrapList } = require('../../utils/format');
+const { buildAssetUrl, flattenLocations, normalizeItem, unwrapList } = require('../../utils/format');
+
+function parseTags(value) {
+  return (value || '')
+    .split(/[,，]/)
+    .map((tag) => tag.trim())
+    .filter(Boolean);
+}
 
 Page({
   data: {
@@ -16,8 +21,9 @@ Page({
       name: '',
       tagsText: '户外，装备',
       coverUrl: '',
+      coverImageId: '',
     },
-    boxContents: mock.items.filter((item) => Number(item.locationId) === 5).slice(0, 2),
+    boxContents: [],
     form: {
       name: '',
       quantity: 1,
@@ -51,61 +57,72 @@ Page({
   },
 
   async loadLocations(defaultLocationId) {
-    const payload = await api.listLocations().catch(() => mock.locations);
-    const locations = flattenLocations(unwrapList(payload, ['locations', 'data']));
-    const defaultId = defaultLocationId || (this.data.isBoxMode ? 5 : '');
-    const locationIndex = Math.max(
-      0,
-      locations.findIndex((location) => Number(location.id) === Number(defaultId)),
-    );
-    const selectedLocation = locations[locationIndex] || {};
+    try {
+      const payload = await api.listLocations();
+      const locations = flattenLocations(unwrapList(payload, ['locations', 'data']));
+      const defaultId = defaultLocationId || '';
+      const locationIndex = Math.max(
+        0,
+        locations.findIndex((location) => Number(location.id) === Number(defaultId)),
+      );
+      const selectedLocation = locations[locationIndex] || {};
 
-    this.setData({
-      locations,
-      locationNames: locations.map((location) => location.path || location.name),
-      locationIndex,
-      selectedLocation,
-      'form.locationId': selectedLocation.id || '',
-    });
+      this.setData({
+        locations,
+        locationNames: locations.map((location) => location.path || location.name),
+        locationIndex,
+        selectedLocation,
+        'form.locationId': selectedLocation.id || '',
+      });
+    } catch (error) {
+      this.setData({ locations: [], locationNames: [], locationIndex: 0, selectedLocation: {} });
+      wx.showToast({ title: '位置加载失败', icon: 'none' });
+    }
   },
 
-  loadBox(id) {
-    const locations = flattenLocations(mock.locations);
-    const box = locations.find((location) => Number(location.id) === Number(id));
-    if (!box) {
+  async loadBox(id) {
+    if (!id) {
       return;
     }
 
-    this.setData({
-      'boxForm.name': box.name || '',
-      'boxForm.tagsText': (box.tags || []).join('，'),
-      'boxForm.coverUrl': box.coverUrl || '',
-    });
+    try {
+      const payload = await api.getLocation(id);
+      const box = payload.location || payload.data || payload;
+      this.setData({
+        'boxForm.name': box.name || '',
+        'boxForm.tagsText': (box.tags || []).join('，'),
+        'boxForm.coverUrl': buildAssetUrl(box.coverUrl || ''),
+      });
+    } catch (error) {
+      wx.showToast({ title: '盒子加载失败', icon: 'none' });
+    }
   },
 
   async loadItem(id) {
-    const payload = await api.getItem(id).catch(() => {
-      return mock.items.find((item) => Number(item.id) === Number(id)) || {};
-    });
-    const item = normalizeItem(payload.item || payload.data || payload);
-    const locationIndex = Math.max(
-      0,
-      this.data.locations.findIndex((location) => Number(location.id) === Number(item.locationId)),
-    );
+    try {
+      const payload = await api.getItem(id);
+      const item = normalizeItem(payload.item || payload.data || payload);
+      const locationIndex = Math.max(
+        0,
+        this.data.locations.findIndex((location) => Number(location.id) === Number(item.locationId)),
+      );
 
-    this.setData({
-      locationIndex,
-      selectedLocation: this.data.locations[locationIndex] || {},
-      form: {
-        name: item.name || '',
-        quantity: item.quantity || 1,
-        locationId: item.locationId || '',
-        tagsText: (item.tags || []).join('，'),
-        note: item.note || '',
-        imageIds: (item.images || []).map((image) => image.id).filter(Boolean),
-        images: item.images || [],
-      },
-    });
+      this.setData({
+        locationIndex,
+        selectedLocation: this.data.locations[locationIndex] || {},
+        form: {
+          name: item.name || '',
+          quantity: item.quantity || 1,
+          locationId: item.locationId || '',
+          tagsText: (item.tags || []).join('，'),
+          note: item.note || '',
+          imageIds: (item.images || []).map((image) => image.id).filter(Boolean),
+          images: item.images || [],
+        },
+      });
+    } catch (error) {
+      wx.showToast({ title: '物品加载失败', icon: 'none' });
+    }
   },
 
   onNameInput(event) {
@@ -166,7 +183,7 @@ Page({
               nextImageIds.push(uploaded.id);
             }
           } catch (error) {
-            nextImages.push({ tempFilePath: file.tempFilePath });
+            wx.showToast({ title: '图片上传失败', icon: 'none' });
           }
         }
 
@@ -197,10 +214,21 @@ Page({
       mediaType: ['image'],
       sourceType: ['album', 'camera'],
       sizeType: ['compressed'],
-      success: (res) => {
+      success: async (res) => {
         const file = res.tempFiles && res.tempFiles[0];
         if (file && file.tempFilePath) {
-          this.setData({ 'boxForm.coverUrl': file.tempFilePath });
+          wx.showLoading({ title: '上传中' });
+          try {
+            const uploaded = await api.uploadImage(file.tempFilePath, 'location_cover');
+            this.setData({
+              'boxForm.coverUrl': buildAssetUrl(uploaded.url) || file.tempFilePath,
+              'boxForm.coverImageId': uploaded.id || '',
+            });
+          } catch (error) {
+            wx.showToast({ title: '封面上传失败', icon: 'none' });
+          } finally {
+            wx.hideLoading();
+          }
         }
       },
     });
@@ -213,23 +241,24 @@ Page({
       return;
     }
 
-    if (config.useMock) {
-      wx.showToast({ title: '已创建示例盒子', icon: 'success' });
-      setTimeout(() => wx.navigateBack(), 500);
-      return;
-    }
-
     try {
-      await api.createLocation({
+      const payload = {
         name,
         type: 'box',
         parentId: this.data.selectedLocation.id || null,
         sortOrder: 0,
-      });
-      wx.showToast({ title: '已创建', icon: 'success' });
+        tags: parseTags(this.data.boxForm.tagsText),
+        coverImageId: this.data.boxForm.coverImageId || null,
+      };
+      if (this.data.id) {
+        await api.updateLocation(this.data.id, payload);
+      } else {
+        await api.createLocation(payload);
+      }
+      wx.showToast({ title: this.data.id ? '已更新' : '已创建', icon: 'success' });
       setTimeout(() => wx.navigateBack(), 500);
     } catch (error) {
-      wx.showToast({ title: '创建接口未就绪', icon: 'none' });
+      wx.showToast({ title: '保存盒子失败', icon: 'none' });
     }
   },
 
@@ -249,19 +278,10 @@ Page({
       name: form.name.trim(),
       quantity: Math.max(1, Number(form.quantity) || 1),
       locationId: Number(form.locationId),
-      tags: form.tagsText
-        .split(/[,，]/)
-        .map((tag) => tag.trim())
-        .filter(Boolean),
+      tags: parseTags(form.tagsText),
       note: form.note.trim(),
       imageIds: form.imageIds,
     };
-
-    if (config.useMock) {
-      wx.showToast({ title: '已保存示例物品', icon: 'success' });
-      setTimeout(() => wx.navigateBack(), 500);
-      return;
-    }
 
     try {
       if (this.data.id) {
@@ -272,7 +292,7 @@ Page({
       wx.showToast({ title: '已保存', icon: 'success' });
       setTimeout(() => wx.navigateBack(), 500);
     } catch (error) {
-      wx.showToast({ title: '接口未就绪，请稍后联调', icon: 'none' });
+      wx.showToast({ title: '保存物品失败', icon: 'none' });
     }
   },
 

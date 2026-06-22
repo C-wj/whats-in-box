@@ -1,7 +1,4 @@
 const api = require('../../utils/api');
-const config = require('../../utils/config');
-const mock = require('../../utils/mock');
-const { flattenLocations, unwrapList } = require('../../utils/format');
 
 Page({
   data: {
@@ -24,26 +21,18 @@ Page({
   },
 
   async loadStats() {
-    if (config.useMock && mock.summary) {
-      this.setData({ stats: mock.summary });
-      return;
+    try {
+      const summary = await api.statsSummary();
+      this.setData({
+        stats: {
+          itemCount: summary.itemCount || 0,
+          locationCount: summary.boxCount || 0,
+          labelCount: summary.labelCount || 0,
+        },
+      });
+    } catch (error) {
+      this.setData({ stats: { itemCount: 0, locationCount: 0, labelCount: 0 } });
     }
-
-    const [locationPayload, itemPayload] = await Promise.all([
-      api.listLocations().catch(() => mock.locations),
-      api.listItems().catch(() => mock.items),
-    ]);
-    const locations = flattenLocations(unwrapList(locationPayload, ['locations', 'data']));
-    const items = unwrapList(itemPayload, ['items', 'data']);
-    const labels = new Set();
-    items.forEach((item) => (item.tags || []).forEach((tag) => labels.add(tag)));
-    this.setData({
-      stats: {
-        itemCount: items.length,
-        locationCount: locations.length,
-        labelCount: labels.size,
-      },
-    });
   },
 
   async checkHealth(showToast = true) {
@@ -69,7 +58,7 @@ Page({
         success: () => wx.showToast({ title: '已复制导出数据', icon: 'success' }),
       });
     } catch (error) {
-      wx.showToast({ title: '导出接口未就绪', icon: 'none' });
+      wx.showToast({ title: '导出失败', icon: 'none' });
     }
   },
 

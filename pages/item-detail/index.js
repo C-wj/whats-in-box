@@ -1,5 +1,4 @@
 const api = require('../../utils/api');
-const mock = require('../../utils/mock');
 const { flattenLocations, normalizeItem, unwrapList } = require('../../utils/format');
 
 Page({
@@ -26,29 +25,31 @@ Page({
   },
 
   async loadDetail() {
-    const [itemPayload, locationPayload] = await Promise.all([
-      api.getItem(this.data.id).catch(() => {
-        return mock.items.find((item) => Number(item.id) === Number(this.data.id)) || mock.items[0];
-      }),
-      api.listLocations().catch(() => mock.locations),
-    ]);
+    try {
+      const [itemPayload, locationPayload] = await Promise.all([
+        api.getItem(this.data.id),
+        api.listLocations(),
+      ]);
 
-    const item = normalizeItem(itemPayload.item || itemPayload.data || itemPayload);
-    const locations = flattenLocations(unwrapList(locationPayload, ['locations', 'data']));
-    const locationIndex = Math.max(
-      0,
-      locations.findIndex((location) => Number(location.id) === Number(item.locationId)),
-    );
+      const item = normalizeItem(itemPayload.item || itemPayload.data || itemPayload);
+      const locations = flattenLocations(unwrapList(locationPayload, ['locations', 'data']));
+      const locationIndex = Math.max(
+        0,
+        locations.findIndex((location) => Number(location.id) === Number(item.locationId)),
+      );
 
-    this.setData({
-      item: Object.assign({}, item, {
-        tagsText: (item.tags || []).join('，'),
-      }),
-      locations,
-      locationNames: locations.map((location) => location.path || location.name),
-      locationIndex,
-      selectedLocation: locations[locationIndex] || {},
-    });
+      this.setData({
+        item: Object.assign({}, item, {
+          tagsText: (item.tags || []).join('，'),
+        }),
+        locations,
+        locationNames: locations.map((location) => location.path || location.name),
+        locationIndex,
+        selectedLocation: locations[locationIndex] || {},
+      });
+    } catch (error) {
+      wx.showToast({ title: '物品详情加载失败', icon: 'none' });
+    }
   },
 
   onLocationChange(event) {
@@ -70,7 +71,7 @@ Page({
       wx.showToast({ title: '已移动', icon: 'success' });
       this.loadDetail();
     } catch (error) {
-      wx.showToast({ title: '接口未就绪，请稍后联调', icon: 'none' });
+      wx.showToast({ title: '移动失败', icon: 'none' });
     }
   },
 
@@ -93,7 +94,7 @@ Page({
           wx.showToast({ title: '已删除', icon: 'success' });
           setTimeout(() => wx.navigateBack(), 500);
         } catch (error) {
-          wx.showToast({ title: '接口未就绪，请稍后联调', icon: 'none' });
+          wx.showToast({ title: '删除失败', icon: 'none' });
         }
       },
     });

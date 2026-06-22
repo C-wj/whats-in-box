@@ -1,7 +1,5 @@
 const api = require('../../utils/api');
-const config = require('../../utils/config');
-const mock = require('../../utils/mock');
-const { flattenLocations, normalizeItem, unwrapList } = require('../../utils/format');
+const { buildAssetUrl, flattenLocations, normalizeItem, unwrapList } = require('../../utils/format');
 
 const typeLabels = {
   home: '家',
@@ -41,41 +39,39 @@ Page({
 
   async loadDashboard() {
     const app = getApp();
-    if (!config.useMock) {
-      try {
-        await app.ensureLogin();
-      } catch (error) {
-        // 界面调试阶段后端登录可能还未就绪。
-      }
+    try {
+      await app.ensureLogin();
+      const [locationPayload, itemPayload] = await Promise.all([
+        api.listLocations(),
+        api.listItems(),
+      ]);
+
+      const tree = unwrapList(locationPayload, ['locations', 'data']);
+      const flatLocations = flattenLocations(tree).map((location) =>
+        Object.assign({}, location, {
+          typeLabel: typeLabels[location.type] || '位置',
+          initial: (location.name || '盒').slice(0, 1),
+          coverUrl: buildAssetUrl(location.coverUrl || location.imageUrl || ''),
+          updatedLabel: location.updatedLabel || '刚刚',
+        }),
+      );
+      const boxCards = flatLocations.filter((location) => location.type === 'box');
+
+      const items = unwrapList(itemPayload, ['items', 'data']).map(normalizeItem);
+
+      this.setData({
+        boxCards: (boxCards.length ? boxCards : flatLocations).slice(0, 8),
+        locations: flatLocations.slice(0, 6),
+        recentItems: items.slice(0, 6),
+        stats: {
+          itemCount: items.length,
+          locationCount: flatLocations.length,
+        },
+      });
+    } catch (error) {
+      this.setData({ boxCards: [], locations: [], recentItems: [], stats: { itemCount: 0, locationCount: 0 } });
+      wx.showToast({ title: '后端接口不可用', icon: 'none' });
     }
-
-    const [locationPayload, itemPayload] = await Promise.all([
-      api.listLocations().catch(() => mock.locations),
-      api.listItems().catch(() => mock.items),
-    ]);
-
-    const tree = unwrapList(locationPayload, ['locations', 'data']);
-    const flatLocations = flattenLocations(tree).map((location) =>
-      Object.assign({}, location, {
-        typeLabel: typeLabels[location.type] || '位置',
-        initial: (location.name || '盒').slice(0, 1),
-        coverUrl: location.coverUrl || location.imageUrl || '',
-        updatedLabel: location.updatedLabel || '2天前',
-      }),
-    );
-    const boxCards = flatLocations.filter((location) => location.type === 'box');
-
-    const items = unwrapList(itemPayload, ['items', 'data']).map(normalizeItem);
-
-    this.setData({
-      boxCards: (boxCards.length ? boxCards : flatLocations).slice(0, 8),
-      locations: flatLocations.slice(0, 6),
-      recentItems: items.slice(0, 6),
-      stats: {
-        itemCount: items.length,
-        locationCount: flatLocations.length,
-      },
-    });
   },
 
   onQueryInput(event) {

@@ -1,5 +1,4 @@
 const api = require('../../utils/api');
-const mock = require('../../utils/mock');
 const { normalizeItem, unwrapList } = require('../../utils/format');
 
 Page({
@@ -32,18 +31,17 @@ Page({
       return;
     }
 
-    const payload = await api.searchItems(keyword).catch(() => {
-      return mock.items.filter((item) => {
-        const haystack = [item.name, item.locationPath, item.note].concat(item.tags || []).join(' ');
-        return haystack.indexOf(keyword) >= 0;
+    try {
+      const payload = await api.searchItems(keyword);
+      this.setData({
+        q: keyword,
+        results: unwrapList(payload, ['items', 'results', 'data']).map(normalizeItem),
+        searched: true,
       });
-    });
-
-    this.setData({
-      q: keyword,
-      results: unwrapList(payload, ['items', 'results', 'data']).map(normalizeItem),
-      searched: true,
-    });
+    } catch (error) {
+      this.setData({ q: keyword, results: [], searched: true });
+      wx.showToast({ title: '搜索接口不可用', icon: 'none' });
+    }
   },
 
   goItemDetail(event) {
@@ -54,4 +52,3 @@ Page({
     wx.navigateBack();
   },
 });
-

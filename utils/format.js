@@ -1,3 +1,18 @@
+const config = require('./config');
+
+function buildAssetUrl(value) {
+  if (!value) {
+    return '';
+  }
+  if (/^(https?:)?\/\//.test(value) || /^wxfile:\/\//.test(value) || /^\/assets\//.test(value)) {
+    return value;
+  }
+  if (value.indexOf('/uploads/') === 0) {
+    return `${config.uploadBaseUrl}${value}`;
+  }
+  return value;
+}
+
 function unwrapList(payload, keys) {
   if (Array.isArray(payload)) {
     return payload;
@@ -43,7 +58,15 @@ function formatDate(value) {
 function normalizeItem(item) {
   item = item || {};
   const name = item.name || '';
-  const images = item.images || item.imageUrls || [];
+  const images = (item.images || item.imageUrls || []).map((image) => {
+    if (typeof image === 'string') {
+      return { url: buildAssetUrl(image) };
+    }
+    return Object.assign({}, image, {
+      url: buildAssetUrl(image.url || image.filePath),
+      filePath: image.filePath || image.url,
+    });
+  });
   const firstImage = item.imageUrl || item.coverUrl || (images[0] && (images[0].url || images[0].filePath));
 
   return Object.assign({}, item, {
@@ -52,14 +75,17 @@ function normalizeItem(item) {
     initial: name ? name.slice(0, 1) : '物',
     locationId: item.locationId === undefined ? item.location_id : item.locationId,
     locationPath: item.locationPath || item.location_path || item.path || item.locationName || '未选择位置',
-    imageUrl: firstImage || '',
+    imageUrl: buildAssetUrl(firstImage),
+    coverUrl: buildAssetUrl(item.coverUrl),
     tags: Array.isArray(item.tags) ? item.tags : [],
+    images,
     updatedLabel: item.updatedLabel || formatDate(item.updatedAt || item.updated_at || item.createdAt || item.created_at),
   });
 }
 
 module.exports = {
   unwrapList,
+  buildAssetUrl,
   flattenLocations,
   formatDate,
   normalizeItem,
