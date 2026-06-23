@@ -3,7 +3,9 @@
   min-height: 100vh;
   overflow: hidden;
   background:
-    radial-gradient(circle at 22% 20%, rgba(7, 193, 96, 0.26), transparent 30%),
+    radial-gradient(circle at 18% 12%, rgba(7, 193, 96, 0.36), transparent 32%),
+    radial-gradient(circle at 86% 18%, rgba(118, 243, 234, 0.24), transparent 34%),
+    radial-gradient(circle at 76% 88%, rgba(69, 225, 124, 0.18), transparent 38%),
     linear-gradient(160deg, #111a18 0%, #293936 48%, #0b0f0e 100%);
 }
 
@@ -28,7 +30,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.42);
+  background: rgba(0, 0, 0, 0.34);
 }
 
 .scan-topbar {
@@ -43,6 +45,9 @@
   padding-right: 32rpx;
   padding-left: 32rpx;
   color: #ffffff;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0));
+  -webkit-backdrop-filter: blur(16rpx);
+  backdrop-filter: blur(16rpx);
 }
 
 .scan-back,
@@ -56,9 +61,13 @@
 
 .scan-back {
   border-radius: 999rpx;
-  background: rgba(0, 0, 0, 0.24);
+  border: 1rpx solid rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.12);
   font-size: 58rpx;
   font-weight: 300;
+  box-shadow: 0 14rpx 34rpx rgba(0, 0, 0, 0.18);
+  -webkit-backdrop-filter: blur(24rpx);
+  backdrop-filter: blur(24rpx);
 }
 
 .scan-title {
@@ -81,10 +90,17 @@
   position: relative;
   width: 520rpx;
   height: 520rpx;
-  border: 3rpx solid rgba(255, 255, 255, 0.34);
-  border-radius: 48rpx;
-  background: rgba(255, 255, 255, 0.03);
+  border: 1rpx solid rgba(255, 255, 255, 0.46);
+  border-top-color: rgba(255, 255, 255, 0.72);
+  border-left-color: rgba(255, 255, 255, 0.62);
+  border-radius: 56rpx;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow:
+    inset 0 1rpx 0 rgba(255, 255, 255, 0.32),
+    0 28rpx 70rpx rgba(0, 0, 0, 0.24);
   overflow: hidden;
+  -webkit-backdrop-filter: blur(26rpx);
+  backdrop-filter: blur(26rpx);
 }
 
 .scanner-frame__tap {
@@ -105,7 +121,7 @@
   left: 28rpx;
   height: 4rpx;
   background: linear-gradient(90deg, transparent, #07c160, transparent);
-  box-shadow: 0 0 28rpx #07c160;
+  box-shadow: 0 0 34rpx #07c160;
   animation: scanLine 2.8s ease-in-out infinite;
 }
 
@@ -153,11 +169,15 @@
 .scan-hint {
   margin-top: 60rpx;
   padding: 18rpx 34rpx;
+  border: 1rpx solid rgba(255, 255, 255, 0.24);
   border-radius: 999rpx;
-  background: rgba(0, 0, 0, 0.36);
+  background: rgba(255, 255, 255, 0.12);
   color: rgba(255, 255, 255, 0.92);
   font-size: 26rpx;
   font-weight: 800;
+  box-shadow: 0 14rpx 34rpx rgba(0, 0, 0, 0.16);
+  -webkit-backdrop-filter: blur(22rpx);
+  backdrop-filter: blur(22rpx);
 }
 
 .scan-actions {
@@ -182,15 +202,19 @@
   width: 112rpx;
   height: 112rpx;
   margin-bottom: 16rpx;
-  border: 2rpx solid rgba(255, 255, 255, 0.28);
+  border: 1rpx solid rgba(255, 255, 255, 0.32);
   border-radius: 999rpx;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.14);
   color: #ffffff;
   font-size: 42rpx;
+  box-shadow: 0 18rpx 40rpx rgba(0, 0, 0, 0.18);
+  -webkit-backdrop-filter: blur(24rpx);
+  backdrop-filter: blur(24rpx);
 }
 
 .scan-bottom-nav {
-  background: #f9f9f9;
+  border-color: rgba(255, 255, 255, 0.36);
+  background: rgba(255, 255, 255, 0.42);
 }
 
 @keyframes scanLine {

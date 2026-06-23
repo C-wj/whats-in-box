@@ -13,7 +13,8 @@
   ],
   "window": {
     "navigationStyle": "custom",
-    "backgroundColor": "#F7F8F4",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F3FCF0",
     "backgroundTextStyle": "dark"
   },
   "style": "v2",

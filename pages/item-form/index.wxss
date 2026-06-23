@@ -1,8 +1,20 @@
 .form-card {
   margin-top: 12rpx;
-  padding: 28rpx;
+  padding: 30rpx;
+  border: 1rpx solid rgba(255, 255, 255, 0.62);
+  border-top-color: rgba(255, 255, 255, 0.9);
+  border-left-color: rgba(255, 255, 255, 0.82);
   border-radius: 34rpx;
-  background: #f3f5ee;
+  background: rgba(255, 255, 255, 0.34);
+  box-shadow: 0 22rpx 50rpx rgba(22, 29, 22, 0.06);
+  -webkit-backdrop-filter: blur(28rpx);
+  backdrop-filter: blur(28rpx);
+}
+
+.topbar__actions .icon-btn {
+  width: 96rpx;
+  min-width: 96rpx;
+  max-width: 96rpx;
 }
 
 .image-grid {
@@ -19,9 +31,12 @@
   justify-content: center;
   height: 190rpx;
   overflow: hidden;
-  border-radius: 28rpx;
-  background: #ffffff;
-  box-shadow: 0 10rpx 32rpx rgba(0, 0, 0, 0.05);
+  border: 1rpx solid rgba(255, 255, 255, 0.62);
+  border-radius: 30rpx;
+  background: rgba(255, 255, 255, 0.38);
+  box-shadow: 0 16rpx 36rpx rgba(22, 29, 22, 0.05);
+  -webkit-backdrop-filter: blur(22rpx);
+  backdrop-filter: blur(22rpx);
 }
 
 .image-cell image {
@@ -47,7 +62,7 @@
 .image-add {
   flex-direction: column;
   gap: 10rpx;
-  border: 2rpx dashed #bbcbba;
+  border: 2rpx dashed rgba(255, 255, 255, 0.7);
   color: #006d33;
   font-size: 24rpx;
   font-weight: 700;
@@ -58,7 +73,7 @@
   bottom: 0;
   z-index: 10;
   padding: 24rpx 0 calc(24rpx + env(safe-area-inset-bottom));
-  background: linear-gradient(180deg, rgba(247, 248, 244, 0), #f7f8f4 24%);
+  background: linear-gradient(180deg, rgba(243, 252, 240, 0), rgba(243, 252, 240, 0.92) 34%);
 }
 
 .form-topbar {
@@ -68,8 +83,11 @@
   height: 104rpx;
   margin: 0 -32rpx;
   padding: 28rpx 32rpx 0;
-  border-bottom: 1rpx solid #eeeeee;
-  background: #f9f9f9;
+  border-bottom: 1rpx solid rgba(255, 255, 255, 0.38);
+  background: rgba(255, 255, 255, 0.42);
+  box-shadow: 0 18rpx 42rpx rgba(22, 29, 22, 0.05);
+  -webkit-backdrop-filter: blur(28rpx);
+  backdrop-filter: blur(28rpx);
 }
 
 .form-back {
@@ -82,7 +100,7 @@
 }
 
 .form-title {
-  color: #111515;
+  color: #161d16;
   font-size: 32rpx;
   font-weight: 900;
 }
@@ -95,10 +113,15 @@
   height: 552rpx;
   margin-top: 28rpx;
   overflow: hidden;
-  border: 4rpx dashed #bfd4bf;
-  border-radius: 22rpx;
-  background: #eeeeee;
+  border: 3rpx dashed rgba(255, 255, 255, 0.72);
+  border-radius: 34rpx;
+  background:
+    radial-gradient(circle at 28% 18%, rgba(255, 255, 255, 0.72), transparent 38%),
+    rgba(255, 255, 255, 0.28);
   color: #3d4a3d;
+  box-shadow: inset 0 1rpx 0 rgba(255, 255, 255, 0.72);
+  -webkit-backdrop-filter: blur(24rpx);
+  backdrop-filter: blur(24rpx);
 }
 
 .cover-upload image {
@@ -112,6 +135,7 @@
   justify-content: center;
   width: 116rpx;
   height: 116rpx;
+  border: 1rpx solid rgba(255, 255, 255, 0.6);
   border-radius: 999rpx;
   background: rgba(7, 193, 96, 0.18);
   color: #07c160;
@@ -159,12 +183,15 @@
   align-items: center;
   min-height: 88rpx;
   padding: 0 28rpx;
-  border-radius: 20rpx;
-  background: #ffffff;
-  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.05);
-  color: #111515;
+  border: 1rpx solid rgba(255, 255, 255, 0.62);
+  border-radius: 28rpx;
+  background: rgba(255, 255, 255, 0.42);
+  box-shadow: 0 16rpx 34rpx rgba(22, 29, 22, 0.05);
+  color: #161d16;
   font-size: 28rpx;
   font-weight: 800;
+  -webkit-backdrop-filter: blur(24rpx);
+  backdrop-filter: blur(24rpx);
 }
 
 .box-picker {
@@ -192,6 +219,7 @@
 
 .form-tag {
   padding: 10rpx 20rpx;
+  border: 1rpx solid rgba(7, 193, 96, 0.22);
   border-radius: 999rpx;
   background: rgba(7, 193, 96, 0.12);
   color: #007832;
@@ -214,7 +242,7 @@
 }
 
 .contents-title {
-  color: #111515;
+  color: #161d16;
   font-size: 28rpx;
   font-weight: 900;
 }
@@ -245,9 +273,12 @@
   gap: 24rpx;
   min-height: 116rpx;
   padding: 18rpx 24rpx;
-  border-radius: 20rpx;
-  background: #ffffff;
-  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.05);
+  border: 1rpx solid rgba(255, 255, 255, 0.58);
+  border-radius: 28rpx;
+  background: rgba(255, 255, 255, 0.38);
+  box-shadow: 0 14rpx 32rpx rgba(22, 29, 22, 0.05);
+  -webkit-backdrop-filter: blur(22rpx);
+  backdrop-filter: blur(22rpx);
 }
 
 .form-content-img {
@@ -264,7 +295,7 @@
 
 .form-content-title {
   overflow: hidden;
-  color: #111515;
+  color: #161d16;
   font-size: 26rpx;
   font-weight: 900;
   text-overflow: ellipsis;
@@ -291,11 +322,14 @@
   flex-direction: column;
   min-height: 178rpx;
   margin-top: 22rpx;
-  border: 4rpx dashed #bfd4bf;
-  border-radius: 20rpx;
-  color: #bfd4bf;
+  border: 3rpx dashed rgba(255, 255, 255, 0.72);
+  border-radius: 30rpx;
+  background: rgba(255, 255, 255, 0.22);
+  color: #6c7b6c;
   font-size: 26rpx;
   font-weight: 900;
+  -webkit-backdrop-filter: blur(22rpx);
+  backdrop-filter: blur(22rpx);
 }
 
 .add-more-icon {

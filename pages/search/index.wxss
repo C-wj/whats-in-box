@@ -1,9 +1,15 @@
 .search-card {
-  padding: 20rpx;
+  padding: 22rpx;
 }
 
 .search-shell--compact {
   margin-top: 0;
+}
+
+.topbar__actions .icon-btn {
+  width: 96rpx;
+  min-width: 96rpx;
+  max-width: 96rpx;
 }
 
 .item-list {
