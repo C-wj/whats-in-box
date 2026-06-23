@@ -22,12 +22,12 @@
   </view>
 
   <view class="mini-grid">
-    <view class="mini-card card">
+    <view class="mini-card card" bindtap="goLocations">
       <view class="mini-icon mini-icon--orange">◇</view>
       <view class="mini-value">{{stats.locationCount}}</view>
       <view class="mini-label">盒子总数</view>
     </view>
-    <view class="mini-card card">
+    <view class="mini-card card" bindtap="goLabels">
       <view class="mini-icon mini-icon--blue">▱</view>
       <view class="mini-value">{{stats.labelCount}}</view>
       <view class="mini-label">启用标签</view>
@@ -58,7 +58,7 @@
         <text class="menu-title">服务状态 · {{serviceStatus}}</text>
         <text class="menu-arrow">›</text>
       </button>
-      <button class="menu-row">
+      <button class="menu-row" bindtap="goAbout">
         <text class="menu-icon">ⓘ</text>
         <text class="menu-title">关于我们</text>
         <text class="menu-arrow">›</text>
@@ -66,7 +66,8 @@
     </view>
   </view>
 
-  <button class="sign-out" bindtap="logout">退出登录</button>
+  <button wx:if="{{isLoggedIn}}" class="sign-out" bindtap="logout">退出登录</button>
+  <button wx:else class="sign-out sign-out--login" bindtap="login">微信登录</button>
 
   <view class="bottom-nav">
     <view class="bottom-nav__item" bindtap="goHome">

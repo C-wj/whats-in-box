@@ -1,8 +1,10 @@
 const api = require('../../utils/api');
+const config = require('../../utils/config');
 
 Page({
   data: {
     serviceStatus: '未知',
+    isLoggedIn: false,
     stats: {
       itemCount: 0,
       locationCount: 0,
@@ -16,8 +18,13 @@ Page({
   },
 
   onShow() {
+    this.refreshLoginState();
     this.checkHealth(false);
     this.loadStats();
+  },
+
+  refreshLoginState() {
+    this.setData({ isLoggedIn: !!wx.getStorageSync(config.tokenStorageKey) });
   },
 
   async loadStats() {
@@ -64,7 +71,23 @@ Page({
 
   logout() {
     getApp().logout();
-    wx.showToast({ title: '已清除', icon: 'success' });
+    this.refreshLoginState();
+    this.setData({ stats: { itemCount: 0, locationCount: 0, labelCount: 0 } });
+    wx.showToast({ title: '已退出登录', icon: 'success' });
+  },
+
+  async login() {
+    wx.showLoading({ title: '登录中' });
+    try {
+      await getApp().ensureLogin();
+      wx.hideLoading();
+      this.refreshLoginState();
+      wx.showToast({ title: '登录成功', icon: 'success' });
+      this.loadStats();
+    } catch (error) {
+      wx.hideLoading();
+      wx.showToast({ title: '登录失败，请重试', icon: 'none' });
+    }
   },
 
   goHome() {
@@ -73,6 +96,20 @@ Page({
 
   goLocations() {
     wx.navigateTo({ url: '/pages/locations/index' });
+  },
+
+  goLabels() {
+    wx.showToast({ title: '标签管理即将上线', icon: 'none' });
+  },
+
+  goAbout() {
+    wx.showModal({
+      title: '关于我们',
+      content: '箱里有什么 · 我的收纳方案\n助你高效管理每一个盒子',
+      showCancel: false,
+      confirmText: '知道了',
+      confirmColor: '#006d33',
+    });
   },
 
   goScan() {
