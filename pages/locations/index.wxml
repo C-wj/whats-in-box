@@ -38,6 +38,41 @@
     </view>
   </view>
 
+  <view class="stats-section-head location-head">
+    <view>
+      <view class="stats-section-title">位置管理</view>
+      <view class="location-subtitle">管理家、房间、柜子、抽屉和盒子</view>
+    </view>
+    <view class="stats-section-action location-add" bindtap="goAddRootLocation">新增位置</view>
+  </view>
+
+  <view class="location-tree" wx:if="{{locationRows.length}}">
+    <view class="location-row" wx:for="{{locationRows}}" wx:key="id" style="padding-left: {{24 + item.indent}}rpx;">
+      <view class="location-row__main" bindtap="goLocationDetail" data-id="{{item.id}}" data-name="{{item.name}}" data-path="{{item.path}}">
+        <view class="location-icon {{item.type === 'box' ? 'location-icon--box' : ''}}">{{item.type === 'home' ? '家' : item.type === 'box' ? '盒' : '位'}}</view>
+        <view class="location-copy">
+          <view class="location-name">{{item.name}}</view>
+          <view class="location-meta">{{item.typeLabel}} · {{item.path || item.name}}</view>
+        </view>
+        <view class="location-count">{{item.itemCount || 0}} 件</view>
+      </view>
+      <view class="location-actions">
+        <view class="location-action {{item.canAddChild ? '' : 'location-action--disabled'}}" bindtap="goAddChildLocation" data-id="{{item.id}}" data-depth="{{item.depth}}">新增子级</view>
+        <view class="location-action" bindtap="goEditLocation" data-id="{{item.id}}">编辑</view>
+        <view class="location-action location-action--danger" bindtap="deleteLocation" data-id="{{item.id}}">删除</view>
+      </view>
+    </view>
+  </view>
+  <view class="location-empty" wx:elif="{{locationLoading}}">
+    <view class="location-empty__title">正在加载位置</view>
+    <view>请稍候。</view>
+  </view>
+  <view class="location-empty" wx:else>
+    <view class="location-empty__title">还没有位置</view>
+    <view>系统会自动创建“我的家”，也可以手动新增。</view>
+    <button class="primary-btn location-empty__btn" bindtap="goAddRootLocation">新增位置</button>
+  </view>
+
   <view class="bottom-nav">
     <view class="bottom-nav__item" bindtap="goHome">
       <image class="bottom-nav__icon" src="/assets/tab/home.svg" mode="aspectFit" />

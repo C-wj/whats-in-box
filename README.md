@@ -21,7 +21,7 @@
 开发 API 地址在 `utils/config.js`：
 
 ```js
-apiBaseUrl: 'http://127.0.0.1:8080/api/v1'
+apiBaseUrl: 'https://test.nfsqydt.ggff.net/api/v1'
 ```
 
 上线前需要替换为 HTTPS 生产域名，并配置到微信小程序合法请求域名。

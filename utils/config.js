@@ -1,6 +1,6 @@
 module.exports = {
-  apiBaseUrl: 'http://127.0.0.1:8080/api/v1',
-  uploadBaseUrl: 'http://127.0.0.1:8080',
+  apiBaseUrl: 'https://test.nfsqydt.ggff.net/api/v1',
+  uploadBaseUrl: 'https://test.nfsqydt.ggff.net',
   useMock: false,
   tokenStorageKey: 'whatsInBoxToken',
   userStorageKey: 'whatsInBoxUser',

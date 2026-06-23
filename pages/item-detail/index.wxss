@@ -228,6 +228,23 @@
   font-weight: 500;
 }
 
+.move-target-card {
+  border-color: rgba(0, 120, 50, 0.18);
+}
+
+.move-target-card--ready {
+  border-color: rgba(0, 120, 50, 0.55);
+  background: linear-gradient(135deg, #ffffff 0%, #f0fff5 100%);
+}
+
+.stored-hint {
+  margin-top: 10rpx;
+  color: #6f7d70;
+  font-size: 24rpx;
+  font-weight: 700;
+  line-height: 32rpx;
+}
+
 .bottom-actions {
   position: fixed;
   right: 0;
@@ -263,6 +280,10 @@
   flex: 1;
   border: 2rpx solid #007832;
   color: #007832;
+}
+
+.move-action--ready {
+  background: rgba(7, 193, 96, 0.12);
 }
 
 .edit-action {

@@ -147,3 +147,145 @@
 .distribution-fill--blue {
   background: #0a84ff;
 }
+
+.location-head {
+  align-items: flex-start;
+}
+
+.location-subtitle {
+  margin-top: 8rpx;
+  color: #6c7b6c;
+  font-size: 24rpx;
+  font-weight: 700;
+  line-height: 32rpx;
+}
+
+.location-add {
+  flex-shrink: 0;
+  padding: 14rpx 22rpx;
+  border-radius: 999rpx;
+  background: #007a3d;
+  color: #ffffff;
+  font-weight: 900;
+}
+
+.location-tree {
+  display: flex;
+  flex-direction: column;
+  gap: 18rpx;
+}
+
+.location-row {
+  padding: 22rpx 24rpx 20rpx;
+  border: 2rpx solid rgba(61, 74, 61, 0.1);
+  border-radius: 28rpx;
+  background: #ffffff;
+  box-shadow: 0 8rpx 18rpx rgba(26, 28, 28, 0.05);
+}
+
+.location-row__main {
+  display: flex;
+  align-items: center;
+  gap: 18rpx;
+}
+
+.location-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 22rpx;
+  background: #e6ebe8;
+  color: #007a3d;
+  font-size: 24rpx;
+  font-weight: 900;
+}
+
+.location-icon--box {
+  background: #c8f4d5;
+}
+
+.location-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.location-name {
+  overflow: hidden;
+  color: #17191c;
+  font-size: 30rpx;
+  font-weight: 900;
+  line-height: 38rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.location-meta {
+  margin-top: 6rpx;
+  overflow: hidden;
+  color: #6c7b6c;
+  font-size: 23rpx;
+  font-weight: 700;
+  line-height: 30rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.location-count {
+  flex-shrink: 0;
+  padding: 10rpx 16rpx;
+  border-radius: 14rpx;
+  background: #f0f4f1;
+  color: #3d4a3d;
+  font-size: 24rpx;
+  font-weight: 900;
+}
+
+.location-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 18rpx;
+  margin-top: 18rpx;
+}
+
+.location-action {
+  padding: 10rpx 14rpx;
+  border-radius: 14rpx;
+  background: rgba(0, 122, 61, 0.08);
+  color: #007a3d;
+  font-size: 23rpx;
+  font-weight: 900;
+}
+
+.location-action--danger {
+  background: rgba(186, 26, 26, 0.08);
+  color: #ba1a1a;
+}
+
+.location-action--disabled {
+  opacity: 0.36;
+}
+
+.location-empty {
+  padding: 42rpx 30rpx;
+  border: 2rpx dashed #bbcbba;
+  border-radius: 28rpx;
+  color: #6c7b6c;
+  font-size: 26rpx;
+  font-weight: 700;
+  text-align: center;
+}
+
+.location-empty__title {
+  margin-bottom: 10rpx;
+  color: #17191c;
+  font-size: 32rpx;
+  font-weight: 900;
+}
+
+.location-empty__btn {
+  margin-top: 26rpx;
+}

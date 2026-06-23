@@ -1,5 +1,5 @@
 <view class="scan-page">
-  <image class="scan-bg" src="/assets/images/image-13.jpg" mode="aspectFill" />
+  <view class="scan-bg"></view>
   <view class="scan-dim"></view>
 
   <view class="scan-topbar" style="{{nav.centerTopbarStyle}}">
@@ -9,21 +9,18 @@
   </view>
 
   <view class="scanner-wrap">
-    <view class="scanner-frame">
+    <view class="scanner-frame" bindtap="startScan">
       <view class="scan-line"></view>
       <view class="corner corner--tl"></view>
       <view class="corner corner--tr"></view>
       <view class="corner corner--bl"></view>
       <view class="corner corner--br"></view>
+      <view class="scanner-frame__tap">{{scanning ? '正在打开相机' : '点击重新扫描'}}</view>
     </view>
 
-    <view class="scan-hint">扫描二维码或物品进行识别</view>
+    <view class="scan-hint" bindtap="startScan">扫描本系统盒子或物品二维码</view>
 
     <view class="scan-actions">
-      <view class="scan-action {{flashOn ? 'scan-action--active' : ''}}" bindtap="toggleFlash">
-        <view class="scan-action__icon">↯</view>
-        <view class="scan-action__label">手电</view>
-      </view>
       <view class="scan-action" bindtap="chooseFromAlbum">
         <view class="scan-action__icon">▧</view>
         <view class="scan-action__label">相册</view>
@@ -40,7 +37,7 @@
       <image class="bottom-nav__icon" src="/assets/tab/home.svg" mode="aspectFit" />
       <text class="bottom-nav__label">首页</text>
     </view>
-    <view class="bottom-nav__item bottom-nav__item--active">
+    <view class="bottom-nav__item bottom-nav__item--active" bindtap="startScan">
       <image class="bottom-nav__icon" src="/assets/tab/scan-active.svg" mode="aspectFit" />
       <text class="bottom-nav__label">扫描</text>
     </view>

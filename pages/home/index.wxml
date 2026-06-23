@@ -24,10 +24,12 @@
   <view class="chip-row-fixed">
     <view
       wx:for="{{filters}}"
-      wx:key="name"
-      class="chip {{index === 0 ? 'chip--active' : ''}}"
+      wx:key="key"
+      class="chip {{item.key === activeFilterKey ? 'chip--active' : ''}}"
+      bindtap="onFilterTap"
+      data-key="{{item.key}}"
     >
-      {{item.name}}
+      {{item.label}}
     </view>
   </view>
 
@@ -59,8 +61,8 @@
   </view>
 
   <view class="empty home-empty" wx:else>
-    <view class="empty-title">还没有盒子</view>
-    <view>先添加一个收纳位置，再把物品记录进去。</view>
+    <view class="empty-title">{{allBoxCards.length ? '没有匹配的盒子' : '还没有盒子'}}</view>
+    <view>{{allBoxCards.length ? '换个筛选条件试试。' : '先添加一个收纳位置，再把物品记录进去。'}}</view>
   </view>
 
   <view class="home-fab" bindtap="goNewItem">＋</view>

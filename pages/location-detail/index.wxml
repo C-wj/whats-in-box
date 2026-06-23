@@ -6,7 +6,8 @@
   </view>
 
   <view class="box-hero">
-    <image src="{{box.heroUrl || box.coverUrl || '/assets/images/image-07.jpg'}}" mode="aspectFill" />
+    <image wx:if="{{box.heroUrl || box.coverUrl}}" src="{{box.heroUrl || box.coverUrl}}" mode="aspectFill" />
+    <view wx:else class="box-hero__fallback">箱里有什么</view>
     <view class="box-hero__shade"></view>
   </view>
 

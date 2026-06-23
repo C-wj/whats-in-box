@@ -1,6 +1,10 @@
 const api = require('../../utils/api');
 const { flattenLocations, normalizeItem, unwrapList } = require('../../utils/format');
 
+function isDifferentLocation(item, location) {
+  return Boolean(location && location.id) && Number(location.id) !== Number(item.locationId);
+}
+
 Page({
   data: {
     id: '',
@@ -14,6 +18,8 @@ Page({
     locationNames: [],
     locationIndex: 0,
     selectedLocation: {},
+    canMove: false,
+    isMoving: false,
   },
 
   onLoad(options) {
@@ -33,10 +39,9 @@ Page({
 
       const item = normalizeItem(itemPayload.item || itemPayload.data || itemPayload);
       const locations = flattenLocations(unwrapList(locationPayload, ['locations', 'data']));
-      const locationIndex = Math.max(
-        0,
-        locations.findIndex((location) => Number(location.id) === Number(item.locationId)),
-      );
+      const currentLocationIndex = locations.findIndex((location) => Number(location.id) === Number(item.locationId));
+      const locationIndex = currentLocationIndex >= 0 ? currentLocationIndex : 0;
+      const selectedLocation = currentLocationIndex >= 0 ? locations[locationIndex] : {};
 
       this.setData({
         item: Object.assign({}, item, {
@@ -45,7 +50,8 @@ Page({
         locations,
         locationNames: locations.map((location) => location.path || location.name),
         locationIndex,
-        selectedLocation: locations[locationIndex] || {},
+        selectedLocation,
+        canMove: isDifferentLocation(item, selectedLocation),
       });
     } catch (error) {
       wx.showToast({ title: '物品详情加载失败', icon: 'none' });
@@ -54,24 +60,42 @@ Page({
 
   onLocationChange(event) {
     const locationIndex = Number(event.detail.value);
+    const selectedLocation = this.data.locations[locationIndex] || {};
     this.setData({
       locationIndex,
-      selectedLocation: this.data.locations[locationIndex] || {},
+      selectedLocation,
+      canMove: isDifferentLocation(this.data.item, selectedLocation),
     });
   },
 
   async moveItem() {
+    if (this.data.isMoving) {
+      return;
+    }
+
     if (!this.data.selectedLocation.id) {
       wx.showToast({ title: '请选择位置', icon: 'none' });
       return;
     }
 
+    if (!this.data.canMove) {
+      wx.showToast({ title: '请选择新的位置', icon: 'none' });
+      return;
+    }
+
+    this.setData({ isMoving: true });
+    wx.showLoading({ title: '移动中' });
+
     try {
       await api.moveItem(this.data.id, Number(this.data.selectedLocation.id));
+      await this.loadDetail();
+      wx.hideLoading();
       wx.showToast({ title: '已移动', icon: 'success' });
-      this.loadDetail();
     } catch (error) {
+      wx.hideLoading();
       wx.showToast({ title: '移动失败', icon: 'none' });
+    } finally {
+      this.setData({ isMoving: false });
     }
   },
 

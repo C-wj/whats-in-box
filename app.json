@@ -3,6 +3,7 @@
     "pages/home/index",
     "pages/scan/index",
     "pages/locations/index",
+    "pages/location-form/index",
     "pages/location-detail/index",
     "pages/withdraw/index",
     "pages/item-form/index",

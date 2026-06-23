@@ -39,18 +39,21 @@
     </view>
   </view>
 
-  <view class="stored-card">
-    <view class="stored-icon">▤</view>
-    <view class="stored-copy">
-      <view class="meta-label">存放位置</view>
-      <view class="stored-title">{{item.locationPath}}</view>
+  <picker mode="selector" range="{{locationNames}}" value="{{locationIndex}}" bindchange="onLocationChange">
+    <view class="stored-card move-target-card {{canMove ? 'move-target-card--ready' : ''}}">
+      <view class="stored-icon">▤</view>
+      <view class="stored-copy">
+        <view class="meta-label">移动到</view>
+        <view class="stored-title">{{selectedLocation.path || item.locationPath || '请选择位置'}}</view>
+        <view class="stored-hint">{{canMove ? '点击下方按钮确认移动' : '点这里选择新的存放位置'}}</view>
+      </view>
+      <view class="stored-arrow">›</view>
     </view>
-    <view class="stored-arrow">›</view>
-  </view>
+  </picker>
 
   <view class="bottom-actions">
     <button class="delete-btn" bindtap="deleteItem">⌫</button>
-    <button class="move-action" bindtap="moveItem">⇥ 移动物品</button>
+    <button class="move-action {{canMove ? 'move-action--ready' : ''}}" bindtap="moveItem" loading="{{isMoving}}" disabled="{{isMoving}}">⇥ 确认移动</button>
     <button class="edit-action" bindtap="editItem">▣ 编辑详情</button>
   </view>
 </view>

@@ -39,7 +39,24 @@
   "condition": {},
   "simulatorPluginLibVersion": {},
   "packOptions": {
-    "ignore": [],
+    "ignore": [
+      {
+        "type": "folder",
+        "value": "desgin"
+      },
+      {
+        "type": "folder",
+        "value": "assets/images"
+      },
+      {
+        "type": "file",
+        "value": "README.md"
+      },
+      {
+        "type": "file",
+        "value": "AGENTS.md"
+      }
+    ],
     "include": []
   },
   "editorSetting": {}

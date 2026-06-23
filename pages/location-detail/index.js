@@ -20,6 +20,12 @@ Page({
       path: decodeURIComponent(options.path || ''),
       nav: getApp().globalData.nav || {},
     });
+  },
+
+  onShow() {
+    if (!this.data.id) {
+      return;
+    }
     this.loadDetail();
   },
 
@@ -43,13 +49,13 @@ Page({
             path: this.data.path,
             tags: [],
             itemCount: items.length,
-            heroUrl: '/assets/images/image-07.jpg',
+            heroUrl: '',
             detailUpdatedLabel: '刚刚',
           },
           current,
           {
             coverUrl: buildAssetUrl(current.coverUrl || ''),
-            heroUrl: buildAssetUrl(current.coverUrl || current.heroUrl || '/assets/images/image-07.jpg'),
+            heroUrl: buildAssetUrl(current.coverUrl || current.heroUrl || ''),
           },
         ),
         children,
@@ -83,7 +89,7 @@ Page({
   },
 
   editBox() {
-    wx.navigateTo({ url: `/pages/item-form/index?mode=box&id=${this.data.id}` });
+    wx.navigateTo({ url: `/pages/location-form/index?id=${this.data.id}` });
   },
 
   goChild(event) {

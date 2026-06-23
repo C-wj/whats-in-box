@@ -6,7 +6,7 @@
 
   <view class="profile-head">
     <view class="avatar-wrap">
-      <image class="avatar" src="/assets/images/image-14.jpg" mode="aspectFill" />
+      <view class="avatar">箱</view>
       <view class="avatar-edit">✎</view>
     </view>
     <view class="profile-name">我的收纳</view>

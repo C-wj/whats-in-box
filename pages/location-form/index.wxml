@@ -1,0 +1,67 @@
+<view class="page page--plain">
+  <view class="form-topbar">
+    <view class="form-back" bindtap="goBack">‹</view>
+    <view class="form-title">{{isEdit ? '编辑位置' : '新增位置'}}</view>
+    <view class="form-spacer"></view>
+  </view>
+
+  <view class="location-form-card">
+    <view class="box-field">
+      <view class="field-line">
+        <text>位置名称</text>
+      </view>
+      <input class="box-input" value="{{form.name}}" placeholder="例如：客厅、电视柜、冬季收纳盒" bindinput="onNameInput" />
+    </view>
+
+    <view class="box-field">
+      <view class="field-line">
+        <text>位置类型</text>
+      </view>
+      <picker mode="selector" range="{{typeNames}}" value="{{typeIndex}}" bindchange="onTypeChange">
+        <view class="box-picker">
+          <text>{{typeNames[typeIndex]}}</text>
+          <text class="picker-arrow">⌄</text>
+        </view>
+      </picker>
+    </view>
+
+    <view class="box-field">
+      <view class="field-line">
+        <text>父级位置</text>
+        <text class="optional">最多 4 层</text>
+      </view>
+      <picker mode="selector" range="{{parentNames}}" value="{{parentIndex}}" bindchange="onParentChange">
+        <view class="box-picker">
+          <text class="picker-pin">⌖</text>
+          <text>{{parentNames[parentIndex]}}</text>
+          <text class="picker-arrow">⌄</text>
+        </view>
+      </picker>
+    </view>
+
+    <block wx:if="{{form.type === 'box'}}">
+      <view class="cover-upload compact-cover" bindtap="chooseCover">
+        <image wx:if="{{form.coverUrl}}" src="{{form.coverUrl}}" mode="aspectFill" />
+        <block wx:else>
+          <view class="cover-icon">▣</view>
+          <view class="cover-title">上传盒子封面</view>
+          <view class="cover-sub">盒子类型可设置封面图</view>
+        </block>
+      </view>
+
+      <view class="box-field">
+        <view class="field-line">
+          <text>盒子标签</text>
+          <text class="optional">选填</text>
+        </view>
+        <view class="tag-input-card">
+          <input class="tag-input" value="{{form.tagsText}}" placeholder="用逗号分隔，例如：季节，衣物" bindinput="onTagsInput" />
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view class="footer-actions">
+    <button class="primary-btn" bindtap="saveLocation">{{isEdit ? '保存位置' : '创建位置'}}</button>
+  </view>
+</view>

@@ -50,7 +50,7 @@
         <view class="contents-title">盒内物品</view>
         <view class="contents-count">已添加 {{boxContents.length}} 件物品</view>
       </view>
-      <view class="contents-add">⊕ 添加物品</view>
+      <view class="contents-add" bindtap="addBoxItem">⊕ 添加物品</view>
     </view>
 
     <view class="form-content-list">
@@ -64,7 +64,7 @@
       </view>
     </view>
 
-    <view class="add-more-box">
+    <view class="add-more-box" bindtap="addBoxItem">
       <view class="add-more-icon">▤</view>
       <view>点击继续添加盒内物品</view>
     </view>
@@ -119,8 +119,8 @@
       <view class="field">
         <view class="field-label">图片（最多 3 张）</view>
         <view class="image-grid">
-          <view class="image-cell" wx:for="{{form.images}}" wx:key="tempFilePath">
-            <image src="{{item.url || item.tempFilePath}}" mode="aspectFill" />
+          <view class="image-cell" wx:for="{{form.images}}" wx:key="key">
+            <image src="{{item.url || item.tempFilePath || item.filePath}}" mode="aspectFill" />
             <button class="image-remove" bindtap="removeImage" data-index="{{index}}">×</button>
           </view>
           <button class="image-add" wx:if="{{form.images.length < 3}}" bindtap="chooseImage">

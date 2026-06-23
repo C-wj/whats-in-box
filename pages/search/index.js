@@ -11,6 +11,10 @@ Page({
   onLoad(options) {
     const q = decodeURIComponent(options.q || '');
     this.setData({ q });
+  },
+
+  onShow() {
+    const q = this.data.q;
     if (q) {
       this.search(q);
     }

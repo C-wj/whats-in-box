@@ -22,6 +22,10 @@ module.exports = {
     });
   },
 
+  homeFilters() {
+    return request({ url: '/home/filters' });
+  },
+
   listLocations() {
     return request({ url: '/locations' });
   },
@@ -84,6 +88,10 @@ module.exports = {
 
   statsSummary() {
     return request({ url: '/stats/summary' });
+  },
+
+  resolveScanCode(code) {
+    return request({ url: withQuery('/scan/resolve', { code }) });
   },
 
   uploadImage,
