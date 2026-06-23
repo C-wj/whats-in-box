@@ -55,8 +55,9 @@ App({
             if (!result || !result.token) {
               throw new Error('登录接口未返回登录凭证');
             }
+            const storedUser = wx.getStorageSync(config.userStorageKey) || {};
             wx.setStorageSync(config.tokenStorageKey, result.token);
-            wx.setStorageSync(config.userStorageKey, result.user || {});
+            wx.setStorageSync(config.userStorageKey, Object.assign({}, storedUser, result.user || {}));
             resolve(result.token);
           } catch (error) {
             reject(error);

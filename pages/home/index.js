@@ -9,26 +9,26 @@ const typeLabels = {
   drawer: '抽屉',
 };
 
-const defaultFilters = [{ type: 'all', label: '全部', locationId: null, key: 'all' }];
+const fixedFilters = [
+  { type: 'all', label: '全部', locationId: null, key: 'all' },
+  { type: 'recent', label: '最近添加', locationId: null, key: 'recent' },
+];
 
 function normalizeHomeFilters(payload) {
-  const filters = unwrapList(payload, ['filters', 'data'])
+  const roomFilters = unwrapList(payload, ['filters', 'data'])
     .map((filter) => {
-      const type = filter.type === 'room' ? 'room' : 'all';
+      const type = filter.type === 'room' ? 'room' : '';
       const locationId = filter.locationId === undefined ? filter.location_id : filter.locationId;
       return {
         type,
-        label: filter.label || filter.name || (type === 'all' ? '全部' : '房间'),
+        label: filter.label || filter.name || '房间',
         locationId: type === 'room' ? Number(locationId) || null : null,
-        key: type === 'room' ? `room-${Number(locationId) || ''}` : 'all',
+        key: `room-${Number(locationId) || ''}`,
       };
     })
-    .filter((filter) => filter.type === 'all' || filter.locationId);
+    .filter((filter) => filter.type === 'room' && filter.locationId);
 
-  if (!filters.length || filters[0].type !== 'all') {
-    return defaultFilters.concat(filters.filter((filter) => filter.type !== 'all'));
-  }
-  return filters;
+  return fixedFilters.concat(roomFilters);
 }
 
 function buildLocationMap(locations) {
@@ -40,8 +40,8 @@ function buildLocationMap(locations) {
 
 function isInsideLocation(location, ancestorId, byId) {
   let current = location;
-  while (current && current.parentId) {
-    if (Number(current.parentId) === Number(ancestorId)) {
+  while (current) {
+    if (Number(current.id) === Number(ancestorId)) {
       return true;
     }
     current = byId[Number(current.parentId)];
@@ -53,9 +53,11 @@ Page({
   data: {
     query: '',
     activeFilterKey: 'all',
-    filters: defaultFilters,
+    filters: fixedFilters,
     allBoxCards: [],
     boxCards: [],
+    allRecentItems: [],
+    isRecentMode: false,
     locations: [],
     recentItems: [],
     stats: {
@@ -103,8 +105,8 @@ Page({
         filters,
         activeFilterKey,
         allBoxCards,
+        allRecentItems: items,
         locations: flatLocations,
-        recentItems: items.slice(0, 6),
         stats: {
           itemCount: items.length,
           locationCount: flatLocations.length,
@@ -112,7 +114,7 @@ Page({
       });
       this.applyFilter(activeFilterKey);
     } catch (error) {
-      this.setData({ allBoxCards: [], boxCards: [], locations: [], recentItems: [], stats: { itemCount: 0, locationCount: 0 } });
+      this.setData({ allBoxCards: [], boxCards: [], allRecentItems: [], locations: [], recentItems: [], stats: { itemCount: 0, locationCount: 0 } });
       wx.showToast({ title: '后端接口不可用', icon: 'none' });
     }
   },
@@ -138,12 +140,24 @@ Page({
     const activeFilterKey = filterKey || 'all';
     const filter = this.data.filters.find((item) => item.key === activeFilterKey) || this.data.filters[0];
     const byId = buildLocationMap(this.data.locations);
-    const boxCards = !filter || filter.type === 'all'
-      ? this.data.allBoxCards
-      : this.data.allBoxCards.filter((location) => isInsideLocation(location, filter.locationId, byId));
+    const isRecentMode = filter && filter.type === 'recent';
+    const isAll = !filter || filter.type === 'all';
+    let boxCards = [];
+    let recentItems = [];
+
+    if (isRecentMode) {
+      recentItems = this.data.allRecentItems;
+    } else if (isAll) {
+      boxCards = this.data.allBoxCards;
+    } else {
+      boxCards = this.data.allBoxCards.filter((location) => isInsideLocation(location, filter.locationId, byId));
+    }
+
     this.setData({
       activeFilterKey: filter ? filter.key : 'all',
       boxCards: boxCards.slice(0, 8),
+      isRecentMode,
+      recentItems: recentItems.slice(0, 6),
     });
   },
 

@@ -22,6 +22,14 @@ module.exports = {
     });
   },
 
+  getProfile() {
+    return request({ url: '/user/profile' });
+  },
+
+  updateProfile(data) {
+    return request({ url: '/user/profile', method: 'PATCH', data });
+  },
+
   homeFilters() {
     return request({ url: '/home/filters' });
   },

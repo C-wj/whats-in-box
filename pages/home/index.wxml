@@ -33,7 +33,21 @@
     </view>
   </view>
 
-  <view class="box-list" wx:if="{{boxCards.length}}">
+  <view class="item-list main-item-list" wx:if="{{isRecentMode && recentItems.length}}">
+    <view class="item-row" wx:for="{{recentItems}}" wx:key="id" bindtap="goItemDetail" data-id="{{item.id}}">
+      <view class="thumb">
+        <image wx:if="{{item.imageUrl}}" src="{{item.imageUrl}}" mode="aspectFill" />
+        <text wx:else>{{item.initial}}</text>
+      </view>
+      <view class="item-main">
+        <view class="item-title">{{item.name}}</view>
+        <view class="item-meta">{{item.locationPath}}</view>
+        <view class="item-meta">数量 {{item.quantity || 1}} · 更新 {{item.updatedLabel}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="box-list" wx:elif="{{!isRecentMode && boxCards.length}}">
     <view
       class="box-card"
       wx:for="{{boxCards}}"
@@ -61,8 +75,8 @@
   </view>
 
   <view class="empty home-empty" wx:else>
-    <view class="empty-title">{{allBoxCards.length ? '没有匹配的盒子' : '还没有盒子'}}</view>
-    <view>{{allBoxCards.length ? '换个筛选条件试试。' : '先添加一个收纳位置，再把物品记录进去。'}}</view>
+    <view class="empty-title">{{isRecentMode ? '还没有最近物品' : (allBoxCards.length ? '没有匹配的盒子' : '还没有盒子')}}</view>
+    <view>{{isRecentMode ? '保存物品后会显示在这里。' : (allBoxCards.length ? '换个筛选条件试试。' : '可以先直接添加物品，之后再整理到盒子里。')}}</view>
   </view>
 
   <view class="home-fab" bindtap="goNewItem">＋</view>

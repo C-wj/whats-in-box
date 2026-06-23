@@ -1,0 +1,44 @@
+<view class="page page--plain">
+  <view class="form-topbar">
+    <view class="form-back" bindtap="goBack">‹</view>
+    <view class="form-title">编辑资料</view>
+    <view class="form-spacer"></view>
+  </view>
+
+  <view class="profile-preview-card">
+    <view class="avatar-preview">{{form.avatarText}}</view>
+    <view class="preview-main">
+      <view class="preview-name">{{form.profileName || '我的收纳'}}</view>
+      <view class="preview-meta">{{form.profileMeta || '填写一句资料说明'}}</view>
+    </view>
+  </view>
+
+  <view class="profile-form-card">
+    <view class="box-field">
+      <view class="field-line">
+        <text>展示名称</text>
+      </view>
+      <input class="box-input" value="{{form.profileName}}" maxlength="16" placeholder="例如：我的收纳" bindinput="onNameInput" />
+    </view>
+
+    <view class="box-field">
+      <view class="field-line">
+        <text>头像文字</text>
+        <text class="optional">最多 2 字</text>
+      </view>
+      <input class="box-input" value="{{form.avatarText}}" maxlength="2" placeholder="例如：箱" bindinput="onAvatarInput" />
+    </view>
+
+    <view class="box-field">
+      <view class="field-line">
+        <text>副标题</text>
+        <text class="optional">选填</text>
+      </view>
+      <input class="box-input" value="{{form.profileMeta}}" maxlength="28" placeholder="例如：标准方案 · 自 2023 年起" bindinput="onMetaInput" />
+    </view>
+  </view>
+
+  <view class="footer-actions">
+    <button class="primary-btn" bindtap="saveProfile">保存资料</button>
+  </view>
+</view>

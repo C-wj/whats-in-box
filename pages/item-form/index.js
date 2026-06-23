@@ -33,6 +33,7 @@ Page({
     mode: 'item',
     isBoxMode: false,
     refreshBoxOnShow: false,
+    boxDirty: false,
     locations: [],
     locationNames: [],
     locationIndex: 0,
@@ -127,6 +128,7 @@ Page({
         locationIndex: parentIndex >= 0 ? parentIndex : 0,
         selectedLocation,
         boxContents,
+        boxDirty: false,
       });
     } catch (error) {
       wx.showToast({ title: '盒子加载失败', icon: 'none' });
@@ -173,11 +175,11 @@ Page({
   },
 
   onBoxNameInput(event) {
-    this.setData({ 'boxForm.name': event.detail.value });
+    this.setData({ 'boxForm.name': event.detail.value, boxDirty: true });
   },
 
   onBoxTagsInput(event) {
-    this.setData({ 'boxForm.tagsText': event.detail.value });
+    this.setData({ 'boxForm.tagsText': event.detail.value, boxDirty: true });
   },
 
   onNoteInput(event) {
@@ -191,6 +193,7 @@ Page({
       locationIndex,
       selectedLocation,
       'form.locationId': selectedLocation.id || '',
+      boxDirty: this.data.isBoxMode ? true : this.data.boxDirty,
     });
   },
 
@@ -256,6 +259,7 @@ Page({
             this.setData({
               'boxForm.coverUrl': image.url || file.tempFilePath,
               'boxForm.coverImageId': image.id || '',
+              boxDirty: true,
             });
           } catch (error) {
             wx.showToast({ title: '封面上传失败', icon: 'none' });
@@ -269,6 +273,12 @@ Page({
 
   async saveBox() {
     const isNew = !this.data.id;
+    if (!isNew && !this.data.boxDirty) {
+      wx.showToast({ title: '已保存', icon: 'success' });
+      setTimeout(() => wx.navigateBack(), 500);
+      return;
+    }
+
     try {
       await this.persistBox();
       wx.showToast({ title: isNew ? '已创建' : '已更新', icon: 'success' });
@@ -331,6 +341,7 @@ Page({
       'boxForm.tagsText': (location.tags || payload.tags).join('，'),
       'boxForm.coverUrl': buildAssetUrl(location.coverUrl || this.data.boxForm.coverUrl || ''),
       'boxForm.parentId': location.parentId || payload.parentId || '',
+      boxDirty: false,
     });
 
     return location;

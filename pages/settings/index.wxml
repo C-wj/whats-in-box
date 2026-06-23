@@ -4,13 +4,13 @@
     <view class="topbar__title topbar__title--dark">箱里有什么</view>
   </view>
 
-  <view class="profile-head">
+  <view class="profile-head" bindtap="goProfileEdit">
     <view class="avatar-wrap">
-      <view class="avatar">箱</view>
+      <view class="avatar">{{profile.avatarText}}</view>
       <view class="avatar-edit">✎</view>
     </view>
-    <view class="profile-name">我的收纳</view>
-    <view class="profile-meta">标准方案 · 自 2023 年起</view>
+    <view class="profile-name">{{profile.profileName}}</view>
+    <view class="profile-meta">{{profile.profileMeta}}</view>
   </view>
 
   <view class="total-card card">
@@ -65,9 +65,6 @@
       </button>
     </view>
   </view>
-
-  <button wx:if="{{isLoggedIn}}" class="sign-out" bindtap="logout">退出登录</button>
-  <button wx:else class="sign-out sign-out--login" bindtap="login">微信登录</button>
 
   <view class="bottom-nav">
     <view class="bottom-nav__item" bindtap="goHome">

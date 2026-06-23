@@ -1,10 +1,17 @@
 const api = require('../../utils/api');
 const config = require('../../utils/config');
+const {
+  getProfile,
+  isDefaultProfile,
+  normalizeProfile,
+  saveProfile,
+} = require('../../utils/profile');
 
 Page({
   data: {
     serviceStatus: '未知',
     isLoggedIn: false,
+    profile: getProfile(),
     stats: {
       itemCount: 0,
       locationCount: 0,
@@ -19,8 +26,25 @@ Page({
 
   onShow() {
     this.refreshLoginState();
+    this.loadProfile();
     this.checkHealth(false);
     this.loadStats();
+  },
+
+  async loadProfile() {
+    const localProfile = getProfile();
+    this.setData({ profile: localProfile });
+    try {
+      const payload = await api.getProfile();
+      const remoteProfile = normalizeProfile(payload.profile || payload.data || payload);
+      const nextPayload = isDefaultProfile(remoteProfile) && !isDefaultProfile(localProfile)
+        ? await api.updateProfile(localProfile)
+        : { profile: remoteProfile };
+      const profile = saveProfile(nextPayload.profile || nextPayload.data || nextPayload);
+      this.setData({ profile });
+    } catch (error) {
+      // 保留本地缓存展示，避免资料接口短暂不可用时页面闪空。
+    }
   },
 
   refreshLoginState() {
@@ -100,6 +124,10 @@ Page({
 
   goLabels() {
     wx.showToast({ title: '标签管理即将上线', icon: 'none' });
+  },
+
+  goProfileEdit() {
+    wx.navigateTo({ url: '/pages/profile/index' });
   },
 
   goAbout() {

@@ -140,3 +140,13 @@
 .home-empty {
   margin-top: 40rpx;
 }
+
+.item-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.main-item-list {
+  margin-top: 30rpx;
+}

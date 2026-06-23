@@ -46,17 +46,37 @@
 
 .image-remove {
   position: absolute;
-  right: 10rpx;
-  top: 10rpx;
+  right: 12rpx;
+  top: 12rpx;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 42rpx;
-  height: 42rpx;
+  width: 46rpx;
+  height: 46rpx;
+  overflow: hidden;
+  border: 1rpx solid rgba(255, 255, 255, 0.86);
   border-radius: 999rpx;
-  background: rgba(0, 0, 0, 0.48);
-  color: #ffffff;
-  font-size: 28rpx;
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 8rpx 20rpx rgba(22, 29, 22, 0.16);
+  -webkit-backdrop-filter: blur(16rpx);
+  backdrop-filter: blur(16rpx);
+  z-index: 2;
+}
+
+.image-remove__line {
+  position: absolute;
+  width: 22rpx;
+  height: 4rpx;
+  border-radius: 999rpx;
+  background: #006d33;
+}
+
+.image-remove__line--a {
+  transform: rotate(45deg);
+}
+
+.image-remove__line--b {
+  transform: rotate(-45deg);
 }
 
 .image-add {

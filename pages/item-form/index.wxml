@@ -121,7 +121,10 @@
         <view class="image-grid">
           <view class="image-cell" wx:for="{{form.images}}" wx:key="key">
             <image src="{{item.url || item.tempFilePath || item.filePath}}" mode="aspectFill" />
-            <button class="image-remove" bindtap="removeImage" data-index="{{index}}">×</button>
+            <view class="image-remove" catchtap="removeImage" data-index="{{index}}">
+              <view class="image-remove__line image-remove__line--a"></view>
+              <view class="image-remove__line image-remove__line--b"></view>
+            </view>
           </view>
           <button class="image-add" wx:if="{{form.images.length < 3}}" bindtap="chooseImage">
             <text>＋</text>

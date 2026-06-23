@@ -5,6 +5,7 @@
     "pages/locations/index",
     "pages/location-form/index",
     "pages/location-detail/index",
+    "pages/profile/index",
     "pages/withdraw/index",
     "pages/item-form/index",
     "pages/item-detail/index",
