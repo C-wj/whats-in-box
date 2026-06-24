@@ -1,11 +1,15 @@
 <view class="box-detail-page">
   <view class="detail-nav" style="{{nav.centerTopbarStyle}}">
-    <view class="detail-nav__btn" bindtap="goBack">‹</view>
+    <view class="detail-nav__btn" bindtap="goBack">
+      <view class="app-icon app-icon--back"></view>
+    </view>
     <view class="detail-nav__title">箱里有什么</view>
-    <view class="detail-nav__btn">⌯</view>
+    <view class="detail-nav__btn">
+      <view class="app-icon app-icon--menu app-icon--muted"></view>
+    </view>
   </view>
 
-  <view class="box-hero">
+  <view class="box-hero" style="{{heroOffsetStyle}}">
     <image wx:if="{{box.heroUrl || box.coverUrl}}" src="{{box.heroUrl || box.coverUrl}}" mode="aspectFill" />
     <view wx:else class="box-hero__fallback">箱里有什么</view>
     <view class="box-hero__shade"></view>
@@ -15,7 +19,10 @@
     <view class="box-info-head">
       <view>
         <view class="box-info-title">{{box.detailTitle || box.name || name}}</view>
-        <view class="box-info-location">⌖ {{box.detailLocation || box.path || path}}</view>
+        <view class="box-info-location">
+          <view class="app-icon app-icon--place app-icon--sm app-icon--muted"></view>
+          <text>{{box.detailLocation || box.path || path}}</text>
+        </view>
       </view>
       <button class="box-edit" bindtap="editBox">编辑</button>
     </view>
@@ -26,14 +33,18 @@
 
     <view class="box-metrics">
       <view class="box-metric">
-        <view class="metric-icon">▣</view>
+        <view class="metric-icon">
+          <view class="app-icon app-icon--item"></view>
+        </view>
         <view>
           <view class="metric-small">物品</view>
           <view class="metric-big">{{box.detailItemCount || box.itemCount || items.length}}</view>
         </view>
       </view>
       <view class="box-metric">
-        <view class="metric-icon metric-icon--blue">↻</view>
+        <view class="metric-icon metric-icon--blue">
+          <view class="app-icon app-icon--refresh app-icon--blue"></view>
+        </view>
         <view>
           <view class="metric-small">更新</view>
           <view class="metric-big">{{box.detailUpdatedLabel || box.updatedLabel || '2天前'}}</view>
@@ -59,8 +70,14 @@
     <view class="contents-head">
       <view class="contents-title">盒内物品</view>
       <view class="contents-actions">
-        <view class="contents-withdraw" bindtap="goWithdraw">⊖ 取出</view>
-        <view class="contents-add" bindtap="goNewItem">⊕ 添加物品</view>
+        <view class="contents-withdraw" bindtap="goWithdraw">
+          <view class="app-icon app-icon--minus app-icon--sm app-icon--blue"></view>
+          <text>取出</text>
+        </view>
+        <view class="contents-add" bindtap="goNewItem">
+          <view class="app-icon app-icon--add app-icon--sm"></view>
+          <text>添加物品</text>
+        </view>
       </view>
     </view>
 
@@ -76,7 +93,7 @@
         </view>
         <view class="detail-item__side">
           <view>数量：{{item.quantity}}</view>
-          <view class="chevron">›</view>
+          <view class="chevron app-icon app-icon--arrow app-icon--muted"></view>
         </view>
       </view>
     </view>
@@ -106,5 +123,7 @@
     <view class="empty" wx:else>暂无操作记录</view>
   </view>
 
-  <view class="detail-fab" bindtap="goNewItem">＋</view>
+  <view class="detail-fab" bindtap="goNewItem">
+    <view class="app-icon app-icon--add app-icon--light app-icon--lg"></view>
+  </view>
 </view>

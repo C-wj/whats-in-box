@@ -15,6 +15,29 @@ const typeLabels = {
   box: '盒子',
 };
 
+const typeIconClasses = {
+  home: 'app-icon--home',
+  room: 'app-icon--room',
+  cabinet: 'app-icon--cabinet',
+  drawer: 'app-icon--drawer',
+  box: 'app-icon--box',
+};
+
+const typeCardClasses = {
+  home: 'space-card--home',
+  room: 'space-card--room',
+  cabinet: 'space-card--cabinet',
+  drawer: 'space-card--drawer',
+  box: 'space-card--box',
+};
+
+function splitPath(path, name) {
+  return String(path || name || '')
+    .split('/')
+    .map((segment) => segment.trim())
+    .filter(Boolean);
+}
+
 function normalizeLocations(payload) {
   return flattenLocations(unwrapList(payload, ['locations', 'data'])).map((location) =>
     Object.assign({}, location, {
@@ -41,9 +64,17 @@ function buildLocationTree(locations) {
   const rows = [];
   const visit = (location, depth) => {
     const children = byParent[location.id] || [];
+    const visualLevel = Math.min(depth, 4);
+    const pathSegments = splitPath(location.path, location.name);
     rows.push(
       Object.assign({}, location, {
         depth,
+        visualLevel,
+        visualIndent: Math.min(depth - 1, 3) * 34,
+        typeIconClass: typeIconClasses[location.type] || 'app-icon--place',
+        typeCardClass: typeCardClasses[location.type] || 'space-card--place',
+        pathSegments,
+        pathText: pathSegments.join(' / '),
         indent: Math.min(depth - 1, 3) * 32,
         childCount: children.length,
         canAddChild: depth < 4,

@@ -21,6 +21,10 @@
   font-weight: 300;
 }
 
+.form-back .app-icon {
+  color: inherit;
+}
+
 .form-title {
   color: #161d16;
   font-size: 32rpx;

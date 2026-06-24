@@ -41,6 +41,11 @@
   font-weight: 800;
 }
 
+.withdraw-topbar__btn .app-icon,
+.withdraw-topbar__more .app-icon {
+  color: inherit;
+}
+
 .withdraw-topbar__title {
   color: #007832;
   font-size: 32rpx;
@@ -82,6 +87,10 @@
   font-weight: 900;
 }
 
+.withdraw-box-icon .app-icon {
+  color: inherit;
+}
+
 .withdraw-box-copy {
   flex: 1;
   min-width: 0;
@@ -98,12 +107,21 @@
 }
 
 .withdraw-box-path {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
   margin-top: 6rpx;
   overflow: hidden;
   color: #3d4a3d;
   font-size: 24rpx;
   font-weight: 800;
   line-height: 34rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.withdraw-box-path text {
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -166,6 +184,12 @@
 .withdraw-check--active {
   border-color: #007832;
   background: linear-gradient(135deg, #45e17c, #007832);
+}
+
+.withdraw-check .app-icon {
+  width: 24rpx;
+  height: 24rpx;
+  color: inherit;
 }
 
 .withdraw-thumb {
@@ -235,6 +259,10 @@
   color: #161d16;
   font-size: 32rpx;
   font-weight: 600;
+}
+
+.counter-btn .app-icon {
+  color: inherit;
 }
 
 .counter-value {
@@ -313,4 +341,10 @@
   border-radius: 999rpx;
   font-size: 24rpx;
   line-height: 34rpx;
+}
+
+.withdraw-confirm-icon .app-icon {
+  width: 22rpx;
+  height: 22rpx;
+  color: inherit;
 }

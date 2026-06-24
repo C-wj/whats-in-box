@@ -1,4 +1,6 @@
 .search-icon {
+  width: 34rpx;
+  height: 34rpx;
   color: #3d4a3d;
   font-size: 32rpx;
   line-height: 1;
@@ -77,12 +79,21 @@
 }
 
 .box-location {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
   margin-top: 8rpx;
   overflow: hidden;
   color: #3d4a3d;
   font-size: 25rpx;
   font-weight: 600;
   line-height: 32rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.box-location text {
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -132,7 +143,6 @@
   border-radius: 999rpx;
   background: linear-gradient(135deg, #45e17c 0%, #07c160 48%, #006d33 100%);
   color: #ffffff;
-  font-size: 54rpx;
   font-weight: 500;
   box-shadow: 0 22rpx 46rpx rgba(7, 193, 96, 0.34);
 }

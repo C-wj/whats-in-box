@@ -14,6 +14,8 @@ Page({
       locationPath: '',
       tags: [],
     },
+    nav: {},
+    heroOffsetStyle: '',
     locations: [],
     locationNames: [],
     locationIndex: 0,
@@ -23,7 +25,12 @@ Page({
   },
 
   onLoad(options) {
-    this.setData({ id: options.id });
+    const nav = getApp().globalData.nav || {};
+    this.setData({
+      id: options.id,
+      nav,
+      heroOffsetStyle: `margin-top:${nav.height || 88}px;`,
+    });
   },
 
   onShow() {

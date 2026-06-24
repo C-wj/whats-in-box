@@ -35,6 +35,10 @@
   box-shadow: 0 10rpx 24rpx rgba(22, 29, 22, 0.06);
 }
 
+.detail-nav__btn .app-icon {
+  color: #111515;
+}
+
 .detail-nav__title {
   color: #111515;
   font-size: 28rpx;
@@ -106,10 +110,19 @@
 }
 
 .box-info-location {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
   margin-top: 10rpx;
   color: #3d4a3d;
   font-size: 24rpx;
   font-weight: 700;
+}
+
+.box-info-location text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .box-edit {
@@ -190,6 +203,10 @@
   color: #0058bc;
 }
 
+.metric-icon .app-icon {
+  color: inherit;
+}
+
 .metric-small {
   color: #3d4a3d;
   font-size: 22rpx;
@@ -224,6 +241,9 @@
 }
 
 .contents-add {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
   color: #006d33;
   font-size: 24rpx;
   font-weight: 800;
@@ -237,6 +257,9 @@
 }
 
 .contents-withdraw {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
   color: #0058bc;
   font-size: 24rpx;
   font-weight: 800;
@@ -343,6 +366,10 @@
 }
 
 .chevron {
+  display: inline-flex;
+  width: 34rpx;
+  height: 34rpx;
+  margin-left: auto;
   color: #3d4a3d;
   font-size: 34rpx;
   font-weight: 400;
@@ -402,7 +429,6 @@
   border-radius: 999rpx;
   background: linear-gradient(135deg, #45e17c 0%, #07c160 48%, #006d33 100%);
   color: #ffffff;
-  font-size: 54rpx;
   box-shadow: 0 22rpx 46rpx rgba(7, 193, 96, 0.34);
 }
 

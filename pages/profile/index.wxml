@@ -1,6 +1,8 @@
 <view class="page page--plain">
   <view class="form-topbar">
-    <view class="form-back" bindtap="goBack">‹</view>
+    <view class="form-back" bindtap="goBack">
+      <view class="app-icon app-icon--back"></view>
+    </view>
     <view class="form-title">编辑资料</view>
     <view class="form-spacer"></view>
   </view>

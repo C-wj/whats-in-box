@@ -10,7 +10,7 @@
   <view class="header-spacer"></view>
 
   <view class="search-shell" bindtap="goSearch">
-    <text class="search-icon">⌕</text>
+    <view class="search-icon app-icon app-icon--search app-icon--muted"></view>
     <input
       class="search-input"
       placeholder="搜索盒子或物品..."
@@ -64,7 +64,10 @@
       <view class="box-main">
         <view>
           <view class="box-title">{{item.name}}</view>
-          <view class="box-location">⌖ {{item.path}}</view>
+          <view class="box-location">
+            <view class="app-icon app-icon--place app-icon--sm app-icon--muted"></view>
+            <text>{{item.path}}</text>
+          </view>
         </view>
         <view class="box-foot">
           <text class="box-count">{{item.itemCount || 0}} 件物品</text>
@@ -79,7 +82,9 @@
     <view>{{isRecentMode ? '保存物品后会显示在这里。' : (allBoxCards.length ? '换个筛选条件试试。' : '可以先直接添加物品，之后再整理到盒子里。')}}</view>
   </view>
 
-  <view class="home-fab" bindtap="goNewItem">＋</view>
+  <view class="home-fab" bindtap="goNewItem">
+    <view class="app-icon app-icon--add app-icon--light app-icon--lg"></view>
+  </view>
 
   <view class="bottom-nav">
     <view class="bottom-nav__item bottom-nav__item--active">

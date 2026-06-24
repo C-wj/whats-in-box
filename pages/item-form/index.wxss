@@ -88,6 +88,10 @@
   font-weight: 700;
 }
 
+.image-add .app-icon {
+  color: inherit;
+}
+
 .footer-actions {
   position: sticky;
   bottom: 0;
@@ -117,6 +121,10 @@
   color: #007832;
   font-size: 58rpx;
   font-weight: 300;
+}
+
+.form-back .app-icon {
+  color: inherit;
 }
 
 .form-title {
@@ -161,6 +169,10 @@
   color: #07c160;
   font-size: 48rpx;
   font-weight: 900;
+}
+
+.cover-icon .app-icon {
+  color: inherit;
 }
 
 .cover-title {
@@ -219,12 +231,14 @@
 }
 
 .picker-pin {
+  flex-shrink: 0;
   margin-right: 14rpx;
   color: #007832;
   font-size: 34rpx;
 }
 
 .picker-arrow {
+  flex-shrink: 0;
   margin-left: auto;
   color: #a8bca9;
   font-size: 34rpx;
@@ -275,6 +289,9 @@
 }
 
 .contents-add {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
   color: #007832;
   font-size: 26rpx;
   font-weight: 900;
@@ -330,6 +347,9 @@
 }
 
 .form-content-delete {
+  flex-shrink: 0;
+  width: 38rpx;
+  height: 38rpx;
   color: #bfd4bf;
   font-size: 34rpx;
   font-weight: 900;
@@ -353,6 +373,8 @@
 }
 
 .add-more-icon {
+  width: 52rpx;
+  height: 52rpx;
   margin-bottom: 16rpx;
   font-size: 44rpx;
 }

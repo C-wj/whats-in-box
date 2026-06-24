@@ -1,7 +1,9 @@
 <view class="page page--plain">
   <block wx:if="{{isBoxMode}}">
     <view class="form-topbar">
-      <view class="form-back" bindtap="goBack">‹</view>
+      <view class="form-back" bindtap="goBack">
+        <view class="app-icon app-icon--back"></view>
+      </view>
       <view class="form-title">{{id ? '编辑盒子' : '新增盒子'}}</view>
       <view class="form-spacer"></view>
     </view>
@@ -9,7 +11,9 @@
     <view class="cover-upload" bindtap="chooseCover">
       <image wx:if="{{boxForm.coverUrl}}" src="{{boxForm.coverUrl}}" mode="aspectFill" />
       <block wx:else>
-        <view class="cover-icon">▣</view>
+        <view class="cover-icon">
+          <view class="app-icon app-icon--box app-icon--lg"></view>
+        </view>
         <view class="cover-title">上传封面照片</view>
         <view class="cover-sub">支持图片上传，最大 5 兆</view>
       </block>
@@ -28,9 +32,9 @@
       </view>
       <picker mode="selector" range="{{locationNames}}" value="{{locationIndex}}" bindchange="onLocationChange">
         <view class="box-picker">
-          <text class="picker-pin">⌖</text>
+          <view class="picker-pin app-icon app-icon--place app-icon--sm"></view>
           <text>{{selectedLocation.path || '不设置父级位置'}}</text>
-          <text class="picker-arrow">⌄</text>
+          <view class="picker-arrow app-icon app-icon--caret app-icon--muted"></view>
         </view>
       </picker>
     </view>
@@ -50,7 +54,10 @@
         <view class="contents-title">盒内物品</view>
         <view class="contents-count">已添加 {{boxContents.length}} 件物品</view>
       </view>
-      <view class="contents-add" bindtap="addBoxItem">⊕ 添加物品</view>
+      <view class="contents-add" bindtap="addBoxItem">
+        <view class="app-icon app-icon--add app-icon--sm"></view>
+        <text>添加物品</text>
+      </view>
     </view>
 
     <view class="form-content-list">
@@ -60,17 +67,17 @@
           <view class="form-content-title">{{item.name}}</view>
           <view class="form-content-meta">数量：{{item.quantity}}</view>
         </view>
-        <view class="form-content-delete">⌫</view>
+        <view class="form-content-delete app-icon app-icon--delete app-icon--muted"></view>
       </view>
     </view>
 
     <view class="add-more-box" bindtap="addBoxItem">
-      <view class="add-more-icon">▤</view>
+      <view class="add-more-icon app-icon app-icon--box app-icon--lg app-icon--muted"></view>
       <view>点击继续添加盒内物品</view>
     </view>
 
     <view class="footer-actions box-footer">
-      <button class="primary-btn" bindtap="saveBox">{{id ? '保存盒子' : '创建盒子'}} ⊙</button>
+      <button class="primary-btn" bindtap="saveBox">{{id ? '保存盒子' : '创建盒子'}}</button>
     </view>
   </block>
 
@@ -101,7 +108,7 @@
         <picker mode="selector" range="{{locationNames}}" value="{{locationIndex}}" bindchange="onLocationChange">
           <view class="picker">
             <text>{{selectedLocation.path || '请选择位置'}}</text>
-            <text>›</text>
+            <view class="app-icon app-icon--arrow app-icon--muted"></view>
           </view>
         </picker>
       </view>
@@ -127,7 +134,7 @@
             </view>
           </view>
           <button class="image-add" wx:if="{{form.images.length < 3}}" bindtap="chooseImage">
-            <text>＋</text>
+            <view class="app-icon app-icon--add"></view>
             <text>添加图片</text>
           </button>
         </view>

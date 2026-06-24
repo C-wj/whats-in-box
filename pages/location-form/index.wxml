@@ -1,6 +1,8 @@
 <view class="page page--plain">
   <view class="form-topbar">
-    <view class="form-back" bindtap="goBack">‹</view>
+    <view class="form-back" bindtap="goBack">
+      <view class="app-icon app-icon--back"></view>
+    </view>
     <view class="form-title">{{isEdit ? '编辑位置' : '新增位置'}}</view>
     <view class="form-spacer"></view>
   </view>
@@ -20,7 +22,7 @@
       <picker mode="selector" range="{{typeNames}}" value="{{typeIndex}}" bindchange="onTypeChange">
         <view class="box-picker">
           <text>{{typeNames[typeIndex]}}</text>
-          <text class="picker-arrow">⌄</text>
+          <view class="picker-arrow app-icon app-icon--caret app-icon--muted"></view>
         </view>
       </picker>
     </view>
@@ -32,9 +34,9 @@
       </view>
       <picker mode="selector" range="{{parentNames}}" value="{{parentIndex}}" bindchange="onParentChange">
         <view class="box-picker">
-          <text class="picker-pin">⌖</text>
+          <view class="picker-pin app-icon app-icon--place app-icon--sm"></view>
           <text>{{parentNames[parentIndex]}}</text>
-          <text class="picker-arrow">⌄</text>
+          <view class="picker-arrow app-icon app-icon--caret app-icon--muted"></view>
         </view>
       </picker>
     </view>
@@ -43,7 +45,9 @@
       <view class="cover-upload compact-cover" bindtap="chooseCover">
         <image wx:if="{{form.coverUrl}}" src="{{form.coverUrl}}" mode="aspectFill" />
         <block wx:else>
-          <view class="cover-icon">▣</view>
+          <view class="cover-icon">
+            <view class="app-icon app-icon--box app-icon--lg"></view>
+          </view>
           <view class="cover-title">上传盒子封面</view>
           <view class="cover-sub">盒子类型可设置封面图</view>
         </block>

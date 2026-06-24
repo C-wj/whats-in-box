@@ -7,6 +7,7 @@ Page({
     name: '',
     path: '',
     nav: {},
+    heroOffsetStyle: '',
     box: {},
     items: [],
     children: [],
@@ -14,11 +15,13 @@ Page({
   },
 
   onLoad(options) {
+    const nav = getApp().globalData.nav || {};
     this.setData({
       id: options.id,
       name: decodeURIComponent(options.name || '位置详情'),
       path: decodeURIComponent(options.path || ''),
-      nav: getApp().globalData.nav || {},
+      nav,
+      heroOffsetStyle: `margin-top:${nav.height || 88}px;`,
     });
   },
 

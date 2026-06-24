@@ -46,20 +46,41 @@
     <view class="stats-section-action location-add" bindtap="goAddRootLocation">新增位置</view>
   </view>
 
-  <view class="location-tree" wx:if="{{locationRows.length}}">
-    <view class="location-row" wx:for="{{locationRows}}" wx:key="id" style="padding-left: {{24 + item.indent}}rpx;">
-      <view class="location-row__main" bindtap="goLocationDetail" data-id="{{item.id}}" data-name="{{item.name}}" data-path="{{item.path}}">
-        <view class="location-icon {{item.type === 'box' ? 'location-icon--box' : ''}}">{{item.type === 'home' ? '家' : item.type === 'box' ? '盒' : '位'}}</view>
-        <view class="location-copy">
-          <view class="location-name">{{item.name}}</view>
-          <view class="location-meta">{{item.typeLabel}} · {{item.path || item.name}}</view>
+  <view class="space-map" wx:if="{{locationRows.length}}">
+    <view class="space-node" wx:for="{{locationRows}}" wx:key="id" style="margin-left: {{item.visualIndent}}rpx;">
+      <view wx:if="{{item.depth > 1}}" class="space-node__branch"></view>
+      <view class="space-card {{item.typeCardClass}}">
+        <view class="space-card__plane"></view>
+        <view class="space-card__body">
+          <view class="space-card__main" bindtap="goLocationDetail" data-id="{{item.id}}" data-name="{{item.name}}" data-path="{{item.path}}">
+            <view class="space-icon">
+              <view class="app-icon {{item.typeIconClass}}"></view>
+            </view>
+            <view class="space-copy">
+              <view class="space-name-row">
+                <view class="space-name">{{item.name}}</view>
+                <view class="space-type">{{item.typeLabel}}</view>
+              </view>
+              <view class="space-path" wx:if="{{item.pathText}}">{{item.pathText}}</view>
+              <view class="space-meta">{{item.childCount || 0}} 个子级 · 第 {{item.visualLevel}} 层</view>
+            </view>
+            <view class="space-count">{{item.itemCount || 0}} 件</view>
+          </view>
+          <view class="space-actions">
+            <view class="space-action {{item.canAddChild ? '' : 'space-action--disabled'}}" bindtap="goAddChildLocation" data-id="{{item.id}}" data-depth="{{item.depth}}">
+              <view class="app-icon app-icon--add app-icon--sm"></view>
+              <text>子级</text>
+            </view>
+            <view class="space-action" bindtap="goEditLocation" data-id="{{item.id}}">
+              <view class="app-icon app-icon--edit app-icon--sm"></view>
+              <text>编辑</text>
+            </view>
+            <view class="space-action space-action--danger" bindtap="deleteLocation" data-id="{{item.id}}">
+              <view class="app-icon app-icon--delete app-icon--sm app-icon--danger"></view>
+              <text>删除</text>
+            </view>
+          </view>
         </view>
-        <view class="location-count">{{item.itemCount || 0}} 件</view>
-      </view>
-      <view class="location-actions">
-        <view class="location-action {{item.canAddChild ? '' : 'location-action--disabled'}}" bindtap="goAddChildLocation" data-id="{{item.id}}" data-depth="{{item.depth}}">新增子级</view>
-        <view class="location-action" bindtap="goEditLocation" data-id="{{item.id}}">编辑</view>
-        <view class="location-action location-action--danger" bindtap="deleteLocation" data-id="{{item.id}}">删除</view>
       </view>
     </view>
   </view>

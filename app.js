@@ -27,9 +27,14 @@ App({
     const navBarHeight = 44;
     const rightSpace = 108;
 
+    const height = statusBarHeight + navBarHeight;
+
     this.globalData.nav = {
-      topbarStyle: `height:${statusBarHeight + navBarHeight}px;padding-top:${statusBarHeight}px;padding-right:${rightSpace}px;`,
-      centerTopbarStyle: `height:${statusBarHeight + navBarHeight}px;padding-top:${statusBarHeight}px;padding-left:${rightSpace}px;padding-right:${rightSpace}px;`,
+      statusBarHeight,
+      navBarHeight,
+      height,
+      topbarStyle: `height:${height}px;padding-top:${statusBarHeight}px;padding-right:${rightSpace}px;`,
+      centerTopbarStyle: `height:${height}px;padding-top:${statusBarHeight}px;padding-left:${rightSpace}px;padding-right:${rightSpace}px;`,
     };
   },
 

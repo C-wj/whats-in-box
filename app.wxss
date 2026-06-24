@@ -167,6 +167,421 @@ button::after {
   content: "";
 }
 
+.app-icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40rpx;
+  height: 40rpx;
+  color: #006d33;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.app-icon::before,
+.app-icon::after {
+  position: absolute;
+  box-sizing: border-box;
+  content: "";
+}
+
+.app-icon--sm {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.app-icon--lg {
+  width: 52rpx;
+  height: 52rpx;
+}
+
+.app-icon--light {
+  color: #ffffff;
+}
+
+.app-icon--muted {
+  color: #3d4a3d;
+}
+
+.app-icon--blue {
+  color: #0058bc;
+}
+
+.app-icon--gold {
+  color: #8c5000;
+}
+
+.app-icon--danger {
+  color: #ba1a1a;
+}
+
+.app-icon--back::before {
+  left: 14rpx;
+  width: 18rpx;
+  height: 18rpx;
+  border-bottom: 4rpx solid currentColor;
+  border-left: 4rpx solid currentColor;
+  border-radius: 2rpx;
+  transform: rotate(45deg);
+}
+
+.app-icon--arrow::before {
+  right: 12rpx;
+  width: 16rpx;
+  height: 16rpx;
+  border-top: 4rpx solid currentColor;
+  border-right: 4rpx solid currentColor;
+  border-radius: 2rpx;
+  transform: rotate(45deg);
+}
+
+.app-icon--caret::before {
+  top: 10rpx;
+  width: 16rpx;
+  height: 16rpx;
+  border-right: 4rpx solid currentColor;
+  border-bottom: 4rpx solid currentColor;
+  border-radius: 2rpx;
+  transform: rotate(45deg);
+}
+
+.app-icon--search::before {
+  top: 6rpx;
+  left: 6rpx;
+  width: 22rpx;
+  height: 22rpx;
+  border: 4rpx solid currentColor;
+  border-radius: 999rpx;
+}
+
+.app-icon--search::after {
+  right: 6rpx;
+  bottom: 7rpx;
+  width: 14rpx;
+  height: 4rpx;
+  border-radius: 999rpx;
+  background: currentColor;
+  transform: rotate(45deg);
+}
+
+.app-icon--add::before,
+.app-icon--add::after,
+.app-icon--minus::before {
+  width: 24rpx;
+  height: 5rpx;
+  border-radius: 999rpx;
+  background: currentColor;
+}
+
+.app-icon--add::after {
+  transform: rotate(90deg);
+}
+
+.app-icon--lg.app-icon--add::before,
+.app-icon--lg.app-icon--add::after {
+  width: 34rpx;
+  height: 6rpx;
+}
+
+.app-icon--check::before {
+  top: 7rpx;
+  width: 14rpx;
+  height: 24rpx;
+  border-right: 5rpx solid currentColor;
+  border-bottom: 5rpx solid currentColor;
+  border-radius: 2rpx;
+  transform: rotate(45deg);
+}
+
+.app-icon--sm.app-icon--check::before {
+  top: 5rpx;
+  width: 10rpx;
+  height: 18rpx;
+  border-right-width: 4rpx;
+  border-bottom-width: 4rpx;
+}
+
+.app-icon--place::before {
+  top: 6rpx;
+  left: 9rpx;
+  width: 20rpx;
+  height: 20rpx;
+  border: 4rpx solid currentColor;
+  border-radius: 999rpx;
+}
+
+.app-icon--place::after {
+  bottom: 5rpx;
+  left: 18rpx;
+  width: 4rpx;
+  height: 18rpx;
+  border-radius: 999rpx;
+  background: currentColor;
+}
+
+.app-icon--home::before {
+  top: 8rpx;
+  width: 26rpx;
+  height: 26rpx;
+  border-top: 5rpx solid currentColor;
+  border-left: 5rpx solid currentColor;
+  border-radius: 4rpx;
+  transform: rotate(45deg);
+}
+
+.app-icon--home::after {
+  bottom: 5rpx;
+  width: 24rpx;
+  height: 20rpx;
+  border: 5rpx solid currentColor;
+  border-top: 0;
+  border-radius: 0 0 5rpx 5rpx;
+}
+
+.app-icon--room::before {
+  width: 30rpx;
+  height: 28rpx;
+  border: 5rpx solid currentColor;
+  border-radius: 5rpx;
+}
+
+.app-icon--room::after {
+  right: 10rpx;
+  bottom: 6rpx;
+  width: 8rpx;
+  height: 16rpx;
+  border: 4rpx solid currentColor;
+  border-bottom: 0;
+  border-radius: 4rpx 4rpx 0 0;
+}
+
+.app-icon--cabinet::before {
+  width: 30rpx;
+  height: 32rpx;
+  border: 5rpx solid currentColor;
+  border-radius: 5rpx;
+}
+
+.app-icon--cabinet::after {
+  width: 20rpx;
+  height: 4rpx;
+  border-radius: 999rpx;
+  background: currentColor;
+  box-shadow: 0 -9rpx 0 currentColor, 0 9rpx 0 currentColor;
+}
+
+.app-icon--drawer::before {
+  width: 32rpx;
+  height: 26rpx;
+  border: 5rpx solid currentColor;
+  border-radius: 5rpx;
+}
+
+.app-icon--drawer::after {
+  bottom: 12rpx;
+  width: 12rpx;
+  height: 4rpx;
+  border-radius: 999rpx;
+  background: currentColor;
+}
+
+.app-icon--box::before {
+  width: 30rpx;
+  height: 28rpx;
+  border: 5rpx solid currentColor;
+  border-radius: 5rpx;
+}
+
+.app-icon--box::after {
+  top: 8rpx;
+  width: 22rpx;
+  height: 5rpx;
+  border-radius: 999rpx;
+  background: currentColor;
+}
+
+.app-icon--item::before {
+  width: 28rpx;
+  height: 28rpx;
+  border: 5rpx solid currentColor;
+  border-radius: 5rpx;
+}
+
+.app-icon--item::after {
+  width: 12rpx;
+  height: 12rpx;
+  border: 4rpx solid currentColor;
+  border-radius: 3rpx;
+}
+
+.app-icon--tag::before {
+  width: 26rpx;
+  height: 26rpx;
+  border: 5rpx solid currentColor;
+  border-radius: 6rpx 6rpx 6rpx 0;
+  transform: rotate(45deg);
+}
+
+.app-icon--tag::after {
+  top: 12rpx;
+  left: 14rpx;
+  width: 6rpx;
+  height: 6rpx;
+  border-radius: 999rpx;
+  background: currentColor;
+}
+
+.app-icon--refresh::before {
+  width: 28rpx;
+  height: 28rpx;
+  border: 5rpx solid currentColor;
+  border-top-color: transparent;
+  border-radius: 999rpx;
+  transform: rotate(-24deg);
+}
+
+.app-icon--refresh::after {
+  top: 7rpx;
+  right: 5rpx;
+  width: 0;
+  height: 0;
+  border-right: 8rpx solid transparent;
+  border-bottom: 12rpx solid currentColor;
+  border-left: 8rpx solid transparent;
+  transform: rotate(42deg);
+}
+
+.app-icon--edit::before {
+  width: 28rpx;
+  height: 7rpx;
+  border-radius: 999rpx;
+  background: currentColor;
+  transform: rotate(-38deg);
+}
+
+.app-icon--edit::after {
+  right: 5rpx;
+  bottom: 7rpx;
+  width: 11rpx;
+  height: 5rpx;
+  border-radius: 999rpx;
+  background: currentColor;
+  transform: rotate(-38deg);
+}
+
+.app-icon--delete::before {
+  bottom: 5rpx;
+  width: 24rpx;
+  height: 24rpx;
+  border: 5rpx solid currentColor;
+  border-top: 0;
+  border-radius: 0 0 5rpx 5rpx;
+}
+
+.app-icon--delete::after {
+  top: 7rpx;
+  width: 28rpx;
+  height: 5rpx;
+  border-radius: 999rpx;
+  background: currentColor;
+  box-shadow: 0 7rpx 0 -1rpx currentColor;
+}
+
+.app-icon--move::before {
+  left: 6rpx;
+  width: 24rpx;
+  height: 5rpx;
+  border-radius: 999rpx;
+  background: currentColor;
+}
+
+.app-icon--move::after {
+  right: 5rpx;
+  width: 16rpx;
+  height: 16rpx;
+  border-top: 5rpx solid currentColor;
+  border-right: 5rpx solid currentColor;
+  border-radius: 2rpx;
+  transform: rotate(45deg);
+}
+
+.app-icon--photo::before {
+  width: 30rpx;
+  height: 26rpx;
+  border: 5rpx solid currentColor;
+  border-radius: 5rpx;
+}
+
+.app-icon--photo::after {
+  right: 10rpx;
+  top: 10rpx;
+  width: 8rpx;
+  height: 8rpx;
+  border-radius: 999rpx;
+  background: currentColor;
+  box-shadow: -10rpx 12rpx 0 2rpx currentColor;
+}
+
+.app-icon--menu::before {
+  width: 28rpx;
+  height: 5rpx;
+  border-radius: 999rpx;
+  background: currentColor;
+  box-shadow: 0 -10rpx 0 currentColor, 0 10rpx 0 currentColor;
+}
+
+.app-icon--settings::before {
+  width: 24rpx;
+  height: 24rpx;
+  border: 5rpx solid currentColor;
+  border-radius: 999rpx;
+}
+
+.app-icon--settings::after {
+  width: 6rpx;
+  height: 6rpx;
+  border-radius: 999rpx;
+  background: currentColor;
+  box-shadow:
+    0 -18rpx 0 currentColor,
+    0 18rpx 0 currentColor,
+    -18rpx 0 0 currentColor,
+    18rpx 0 0 currentColor;
+}
+
+.app-icon--info::before {
+  width: 30rpx;
+  height: 30rpx;
+  border: 5rpx solid currentColor;
+  border-radius: 999rpx;
+}
+
+.app-icon--info::after {
+  width: 5rpx;
+  height: 14rpx;
+  border-radius: 999rpx;
+  background: currentColor;
+  box-shadow: 0 -11rpx 0 -1rpx currentColor;
+}
+
+.app-icon--stats::before {
+  width: 30rpx;
+  height: 30rpx;
+  border: 5rpx solid currentColor;
+  border-radius: 5rpx;
+}
+
+.app-icon--stats::after {
+  bottom: 9rpx;
+  width: 5rpx;
+  height: 14rpx;
+  border-radius: 999rpx;
+  background: currentColor;
+  box-shadow: -9rpx 5rpx 0 currentColor, 9rpx -5rpx 0 currentColor;
+}
+
 .header-spacer {
   height: 28rpx;
 }

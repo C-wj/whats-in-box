@@ -3,7 +3,9 @@
   <view class="scan-dim"></view>
 
   <view class="scan-topbar" style="{{nav.centerTopbarStyle}}">
-    <view class="scan-back" bindtap="goHome">‹</view>
+    <view class="scan-back" bindtap="goHome">
+      <view class="app-icon app-icon--back app-icon--light"></view>
+    </view>
     <view class="scan-title">箱里有什么</view>
     <view class="scan-spacer"></view>
   </view>
@@ -22,11 +24,15 @@
 
     <view class="scan-actions">
       <view class="scan-action" bindtap="chooseFromAlbum">
-        <view class="scan-action__icon">▧</view>
+        <view class="scan-action__icon">
+          <view class="app-icon app-icon--photo app-icon--light app-icon--lg"></view>
+        </view>
         <view class="scan-action__label">相册</view>
       </view>
       <view class="scan-action" bindtap="goManual">
-        <view class="scan-action__icon">☰</view>
+        <view class="scan-action__icon">
+          <view class="app-icon app-icon--menu app-icon--light app-icon--lg"></view>
+        </view>
         <view class="scan-action__label">手动</view>
       </view>
     </view>

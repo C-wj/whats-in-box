@@ -21,6 +21,10 @@
   font-weight: 300;
 }
 
+.form-back .app-icon {
+  color: inherit;
+}
+
 .form-title {
   color: #161d16;
   font-size: 32rpx;
@@ -86,12 +90,14 @@
 }
 
 .picker-pin {
+  flex-shrink: 0;
   margin-right: 14rpx;
   color: #007832;
   font-size: 34rpx;
 }
 
 .picker-arrow {
+  flex-shrink: 0;
   margin-left: auto;
   color: #a8bca9;
   font-size: 34rpx;
@@ -151,6 +157,10 @@
   color: #07c160;
   font-size: 48rpx;
   font-weight: 900;
+}
+
+.cover-icon .app-icon {
+  color: inherit;
 }
 
 .cover-title {
